@@ -108,6 +108,8 @@ ggplotly(chart1)
 
   
 ### Within playlist comparison (chroma features)
+
+Comment here
 ```{r}
 chart2 <- compmus_long_distance(
   chopin |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
@@ -136,6 +138,7 @@ chart2
   comment placed here
 
 ### Cross-playlist comparison (study playlist vs. workout playlist)
+comment here
 ```{r}
 chart3 <- compmus_long_distance(
   chopin |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
