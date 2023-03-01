@@ -138,7 +138,7 @@ chart2
   comment placed here
 
 ### Cross-playlist comparison (study playlist vs. workout playlist)
-comment here
+comment heree
 ```{r}
 chart3 <- compmus_long_distance(
   chopin |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
