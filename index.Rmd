@@ -4,6 +4,7 @@
     flexdashboard::flex_dashboard:
       vertical_layout: fill
       theme: journal 
+      orientation: column
   date: "2023-02-26"
 ---
   
@@ -16,6 +17,7 @@ library(tidyverse)
 library(plotly)
 library(spotifyr)
 library(compmus)
+library(dplyr)
 lofi <- get_playlist_audio_features("", "0vvXsWCC9xrXsKd4FyS8kM?si=59987a21511a4fc1")
 s_classic <- get_playlist_audio_features("", "6d7BJsiKHny0PHvgn62pBU?si=3cd9d8cce4d145c5") 
 non_lofi <- get_playlist_audio_features("", "37i9dQZF1DX76Wlfdnj7AP?si=8263b5c28feb41d7") 
@@ -43,21 +45,157 @@ blackpink <-
   select(start, duration, pitches)
 
 ```
-
-Introduction {.storyboard}
+Visualisation {.storyboard}
 =========================================
-  
-### What features recipe goes into making the best study playlist?
-  
+
+### Cepstrograms
+
 ```{r}
+chopin <-
+  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=e4773e8cdc504b60") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+
+chopin |>
+  compmus_gather_timbre() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value, title(main = "Nocturne by Chopin")
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
+
+lofi <-
+  get_tidy_audio_analysis("5jDr57ExdEW04Zjcsb4XKK?si=b51774123a904b5f") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+
+lofi |>
+  compmus_gather_timbre() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value, title(main = 'Lofi - Capturin the Lights')
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
+
+blackpink <-
+  get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+
+blackpink |>
+  compmus_gather_timbre() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value, title(main = 'Pink Venom by Blankpink')
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
+```
+
+### Self-similarity matrix
+
+```{r}
+chopin |>
+  compmus_self_similarity(pitches, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d, title(main = 'Chroma')
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x = "", y = "")
+
+chopin |>
+  compmus_self_similarity(timbre, "cosine") |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d, title(main = 'Timbre')
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x = "", y = "")
 
 ```
 
-Study playlist can play an important role in the productivity level of any study session. While studying together with friends we ended up in situation where we had to listen to our individual playlists in headphones, because each of our taste in study music was very different. Therefore the first question I want to look into is "What makes any music or song a study-friendly option?". Does it involve its slow rhytm, low dancebility, low energy, low dancebility, yet the most important question I want to figure out is the level of accousticness and instrumentalness across various types of study playlists. My main research question is what combination of the main features classify the music into study friendly. It will be possible to compare the opposite of study music, for example, workout or party playlist and contrast it to study music. 
-
-Visualisation {.storyboard}
-=========================================
-  
 ### Cross-playlist comparison
   
 ```{r}
@@ -109,7 +247,6 @@ ggplotly(chart1)
   
 ### Within playlist comparison (chroma features)
 
-Comment here
 ```{r}
 chart2 <- compmus_long_distance(
   chopin |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
@@ -134,11 +271,10 @@ chart2 <- compmus_long_distance(
 # ggplotly(chart2)
 chart2
 ```
-***
-  comment placed here
+
 
 ### Cross-playlist comparison (study playlist vs. workout playlist)
-comment heree
+
 ```{r}
 chart3 <- compmus_long_distance(
   chopin |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
@@ -163,9 +299,20 @@ chart3 <- compmus_long_distance(
 # ggplotly(chart3)
 chart3
 ```
-***
-  comment placed here
+
+
+Introduction {.storyboard}
+=========================================
   
+### What features recipe goes into making the best study playlist?
+  
+```{r}
+
+```
+
+Study playlist can play an important role in the productivity level of any study session. While studying together with friends we ended up in situation where we had to listen to our individual playlists in headphones, because each of our taste in study music was very different. Therefore the first question I want to look into is "What makes any music or song a study-friendly option?". Does it involve its slow rhytm, low dancebility, low energy, low dancebility, yet the most important question I want to figure out is the level of accousticness and instrumentalness across various types of study playlists. My main research question is what combination of the main features classify the music into study friendly. It will be possible to compare the opposite of study music, for example, workout or party playlist and contrast it to study music. 
+
+
 Conclusion {.storyboard}
 =========================================
   
