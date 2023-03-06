@@ -78,7 +78,7 @@ chopin |>
       x = start + duration / 2,
       width = duration,
       y = basis,
-      fill = value, title(main = "Nocturne by Chopin")
+      fill = value, title(main = "Nocturn by Chopin")
     )
   ) +
   geom_tile() +
