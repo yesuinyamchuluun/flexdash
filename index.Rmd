@@ -5,6 +5,7 @@
       vertical_layout: fill
       theme: journal 
       orientation: column
+      storyboard: true
   date: "2023-02-26"
 ---
   
@@ -18,6 +19,8 @@ library(plotly)
 library(spotifyr)
 library(compmus)
 library(dplyr)
+
+knitr::opts_chunk$set(eval=FALSE)
 lofi <- get_playlist_audio_features("", "0vvXsWCC9xrXsKd4FyS8kM?si=59987a21511a4fc1")
 s_classic <- get_playlist_audio_features("", "6d7BJsiKHny0PHvgn62pBU?si=3cd9d8cce4d145c5") 
 non_lofi <- get_playlist_audio_features("", "37i9dQZF1DX76Wlfdnj7AP?si=8263b5c28feb41d7") 
@@ -45,15 +48,21 @@ blackpink <-
   select(start, duration, pitches)
 
 ```
-Visualisation {.storyboard}
+
+Visualisation
 =========================================
 
 ### Cepstrograms
+
 Left top graph is cepstrograms breakdown of the lofi beat by less.people from research playlist#1.
 
 Left bottom graph is cepstrograms breakdown of the soft classic song by Chopin from research playlist#2.
 
 Right chart is cepstrograms breakdown of the pop song "Pink Venom" by Blackpink from research playlist#3.
+
+
+### Lofi
+
 ```{r}
 lofi <-
   get_tidy_audio_analysis("5jDr57ExdEW04Zjcsb4XKK?si=b51774123a904b5f") |> # Change URI.
@@ -89,7 +98,18 @@ lofi |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   scale_fill_viridis_c() +                              
   theme_classic()
+```
 
+sometect
+
+***
+
+sometect
+
+
+### Classical
+
+```{r}
 chopin <-
   get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=e4773e8cdc504b60") |> # Change URI.
   compmus_align(bars, segments) |>                     # Change `bars`
@@ -124,7 +144,12 @@ chopin |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   scale_fill_viridis_c() +                              
   theme_classic()
+```
 
+
+### Workout
+
+```{r}
 blackpink <-
   get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |> # Change URI.
   compmus_align(bars, segments) |>                     # Change `bars`
@@ -163,45 +188,60 @@ blackpink |>
 
 
 ### Self-similarity matrix
+
 This is chroma and timbre cross analysis of "classical piece"Nocturne in B major Op. 62" by Chopin.
-```{r}
-chopin |>
-  compmus_self_similarity(pitches, "cosine") |> 
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+chopin <-
+  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=e4773e8cdc504b60") |>
+  compmus_align(bars, segments) |>
+  select(bars) |>
+  unnest(bars) |>
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "acentre", norm = "manhattan"
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  )
+bind_rows(
+  chopin |>
+    compmus_self_similarity(pitches, "aitchison") |>
+    mutate(d = d / max(d), type = "Chroma"),
+  chopin |>
+    compmus_self_similarity(timbre, "euclidean") |>
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |>
   ggplot(
     aes(
       x = xstart + xduration / 2,
       width = xduration,
       y = ystart + yduration / 2,
       height = yduration,
-      fill = d, title(main = 'Chroma')
+      fill = d
     )
   ) +
   geom_tile() +
   coord_fixed() +
+  facet_wrap(~type) +
   scale_fill_viridis_c(guide = "none") +
   theme_classic() +
   labs(x = "", y = "")
-
-chopin |>
-  compmus_self_similarity(timbre, "cosine") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d, title(main = 'Timbre')
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
-  scale_fill_viridis_c(guide = "none") +
-  theme_classic() +
-  labs(x = "", y = "")
-
 ```
 
-### Cross-playlist comparison
+
+### Cross-playlist comparison 
   
 ```{r}
 chart1 <- soft_lofi |>                    # Soft vs. Lofi.
@@ -246,11 +286,13 @@ chart1 <- soft_lofi |>                    # Soft vs. Lofi.
 ggplotly(chart1)
 
 ```
+
 ***
+
   In the plot we are contrasting and comparing three playlists. First one is called "Beast Mode" with almost 10,000,000 likes on Spotify and 200 songs. Second goes the "Soft Classical Study" with 1,000 likes and 138 songs. Third goes the "Study Lofi" playlist with 7,000,000 likes and 500 songs. After several experiments and combinations of features the most interesting picture came up with accousticness on x-axis and energy on y-axis. Simultaneously we are looking at the size and color of the dots to see the level of loudness and instrumentalness, respectively. The obvious observations we can make are that first and foremost, study playlist tend to consist of songs with lower energy and higher accousticness. The other two conclusions are pretty much all of the songs in study playlists have high instrumentalness. Last conclusion is that loudness level is low in study playlists and combination of all levels can be observed for the "Beast Mode".
 
   
-### Within playlist comparison (chroma features)
+### Within playlist comparison (chroma features) 
 
 ```{r}
 chart2 <- compmus_long_distance(
@@ -306,8 +348,8 @@ chart3
 ```
 
 
-Introduction {.storyboard}
-=========================================
+Introduction
+=========================================  
   
 ### What features recipe goes into making the best study playlist?
   
@@ -318,10 +360,10 @@ Introduction {.storyboard}
 Study playlist can play an important role in the productivity level of any study session. While studying together with friends we ended up in situation where we had to listen to our individual playlists in headphones, because each of our taste in study music was very different. Therefore the first question I want to look into is "What makes any music or song a study-friendly option?". Does it involve its slow rhytm, low dancebility, low energy, low dancebility, yet the most important question I want to figure out is the level of accousticness and instrumentalness across various types of study playlists. My main research question is what combination of the main features classify the music into study friendly. It will be possible to compare the opposite of study music, for example, workout or party playlist and contrast it to study music. 
 
 
-Conclusion {.storyboard}
-=========================================
-  
-### Conclusion {.storyboard}
+Conclusion
+=========================================  
+
+### Conclusion
   
 ```{r}
 
