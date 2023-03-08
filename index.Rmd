@@ -49,43 +49,12 @@ Visualisation {.storyboard}
 =========================================
 
 ### Cepstrograms
+Left top graph is cepstrograms breakdown of the lofi beat by less.people from research playlist#1.
 
+Left bottom graph is cepstrograms breakdown of the soft classic song by Chopin from research playlist#2.
+
+Right chart is cepstrograms breakdown of the pop song "Pink Venom" by Blackpink from research playlist#3.
 ```{r}
-chopin <-
-  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=e4773e8cdc504b60") |> # Change URI.
-  compmus_align(bars, segments) |>                     # Change `bars`
-  select(bars) |>                                      #   in all three
-  unnest(bars) |>                                      #   of these lines.
-  mutate(
-    pitches =
-      map(segments,
-        compmus_summarise, pitches,
-        method = "rms", norm = "euclidean"              # Change summary & norm.
-      )
-  ) |>
-  mutate(
-    timbre =
-      map(segments,
-        compmus_summarise, timbre,
-        method = "rms", norm = "euclidean"              # Change summary & norm.
-      )
-  )
-
-chopin |>
-  compmus_gather_timbre() |>
-  ggplot(
-    aes(
-      x = start + duration / 2,
-      width = duration,
-      y = basis,
-      fill = value, title(main = "Nocturn by Chopin")
-    )
-  ) +
-  geom_tile() +
-  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
-  scale_fill_viridis_c() +                              
-  theme_classic()
-
 lofi <-
   get_tidy_audio_analysis("5jDr57ExdEW04Zjcsb4XKK?si=b51774123a904b5f") |> # Change URI.
   compmus_align(bars, segments) |>                     # Change `bars`
@@ -114,6 +83,41 @@ lofi |>
       width = duration,
       y = basis,
       fill = value, title(main = 'Lofi - Capturin the Lights')
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
+
+chopin <-
+  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=e4773e8cdc504b60") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+
+chopin |>
+  compmus_gather_timbre() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value, title(main = "Nocturn by Chopin")
     )
   ) +
   geom_tile() +
@@ -157,8 +161,9 @@ blackpink |>
   theme_classic()
 ```
 
-### Self-similarity matrix
 
+### Self-similarity matrix
+This is chroma and timbre cross analysis of "classical piece"Nocturne in B major Op. 62" by Chopin.
 ```{r}
 chopin |>
   compmus_self_similarity(pitches, "cosine") |> 
