@@ -1,5 +1,5 @@
 ---
-  title: "Storyboard"
+  title: "Key to a Productive Study Session"
   output: 
     flexdashboard::flex_dashboard:
       vertical_layout: fill
@@ -9,7 +9,7 @@
       orientation: column
       storyboard: true
       self_contained: false
-  date: "2023-02-26"
+  date: "2023-03-17"
 ---
   
 ```{r setup, include=FALSE}
@@ -25,22 +25,25 @@ library(dplyr)
 lofi <- get_playlist_audio_features("", "0vvXsWCC9xrXsKd4FyS8kM?si=59987a21511a4fc1")
 s_classic <- get_playlist_audio_features("", "6d7BJsiKHny0PHvgn62pBU?si=3cd9d8cce4d145c5") 
 non_lofi <- get_playlist_audio_features("", "37i9dQZF1DX76Wlfdnj7AP?si=8263b5c28feb41d7") 
+futurefunk <- get_playlist_audio_features("", "37i9dQZF1DXbjGYBfEmjR5?si=4cdc10c06f8342df")
 soft_lofi <-
   bind_rows(
-    lofi |> mutate(category = "Study Lofi"),
+    futurefunk |> mutate(category = "Future Funk"),
+    non_lofi |> mutate(category = "Beast Mode"),
     s_classic |> mutate(category = "Soft Classical"),
-    non_lofi |> mutate(category = "Beast Mode")
+    lofi |> mutate(category = "Study Lofi")
   ) 
 chopin <-
-  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=e4773e8cdc504b60") |>
+  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76") |>
   select(segments) |>
   unnest(segments) |>
-  select(start, duration, pitches)
+  select(start, duration, pitches) #'Nocturne in A-Flat Major, Op. 32, No. 2' by Chopin
+
 ludovico <-
   get_tidy_audio_analysis("3weNRklVDqb4Rr5MhKBR3D?si=3723ad9ebb624e86") |>
   select(segments) |>
   unnest(segments) |>
-  select(start, duration, pitches)
+  select(start, duration, pitches) #Nuvole Bianche by Ludovico Einaudi
 
 blackpink <-
   get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |>
@@ -48,12 +51,11 @@ blackpink <-
   unnest(segments) |>
   select(start, duration, pitches)
 lofi1 <-
-  get_tidy_audio_analysis("2nPFhADlsEdtUenU1PgHoS?si=b6d1338822b74961") # Juneberry by Lawrence Walther
+  get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd") # Forgotten Past by Dosi, Wishes and Dreams
 lofi2 <-
   get_tidy_audio_analysis("6y3y1s6eiTYsLEajJGbCkj?si=2a95b480bd31415c") # Cadenza by Lucid Keys, Mondo Loops
 lofi3 <-
-  get_tidy_audio_analysis("0UCJtleZmlwpicJkmrys4a?si=8172fd17c8834ca2")
-
+  get_tidy_audio_analysis("0UCJtleZmlwpicJkmrys4a?si=8172fd17c8834ca2") # convo by SNUG
 
 ```
 
@@ -141,6 +143,9 @@ chart2 <- compmus_long_distance(
 chart2
 ```
 
+***
+"embeded link to be added"
+
 Cross-playlist comparison (study playlist vs. workout playlist) {.storyboard data-navmenu=Visualisation}
 =========================================
 
@@ -171,6 +176,9 @@ chart3 <- compmus_long_distance(
 chart3
 ```
 
+***
+"embeded link to be added"
+
 Cepstrograms {.storyboard data-navmenu=Visualisation}
 =========================================
 
@@ -178,7 +186,7 @@ Cepstrograms {.storyboard data-navmenu=Visualisation}
 
 ```{r}
 lofi1 <-
-  get_tidy_audio_analysis("2nPFhADlsEdtUenU1PgHoS?si=b6d1338822b74961") |> # Juneberry by Lawrence Walther
+  get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd") |>  # Forgotten Past by Dosi, Wishes and Dreams
   compmus_align(bars, segments) |>                     # Change `bars`
   select(bars) |>                                      #   in all three
   unnest(bars) |>                                      #   of these lines.
@@ -267,12 +275,14 @@ lofi3 |>
 ***
 
 Cepstrograms breakdown of the lofi beat by less.people from research playlist#1.
+"embeded link to be added"
+
 
 ### Soft Classical
 
 ```{r}
 chopin <-
-  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=178d1c0ce41b4c99") |> # Nocturne by Chopin
+  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76") |> # "Nocturne in A-Flat Major, Op. 32, No.2" by Chopin
   compmus_align(bars, segments) |>                     # Change `bars`
   select(bars) |>                                      #   in all three
   unnest(bars) |>                                      #   of these lines.
@@ -360,6 +370,7 @@ joep |>
 ***
 
 Cepstrograms breakdown of the soft classic song by Chopin from research playlist#2.
+"embeded link to be added"
 
 ### Workout
 
@@ -452,14 +463,13 @@ lilnasx |>
 ***
 
 Cepstrograms breakdown of the pop song "Pink Venom" by Blackpink from research playlist#3.
+"embeded link to be added"
 
 Self Similarity Matrix {.storyboard data-navmenu=Visualisation}
 =========================================
 
 ### Lofi
 
-This is chroma and timbre cross analysis of "classical piece"Nocturne in B major Op. 62" by Chopin.
-
 ```{r, echo = FALSE, message = FALSE}
 library(tidyverse)
 library(spotifyr)
@@ -493,12 +503,11 @@ bind_rows(
 
 ***
 
-Comment here
+This is chroma and timbre cross analysis of lofi beat piece Forgotten Past by Dosi, Wishes and Dreams
+"embeded link to be added"
 
 ### Soft Classical
 
-This is chroma and timbre cross analysis of "classical piece"Nocturne in B major Op. 62" by Chopin.
-
 ```{r, echo = FALSE, message = FALSE}
 library(tidyverse)
 library(spotifyr)
@@ -532,12 +541,11 @@ bind_rows(
 
 ***
 
-Comment here
+This is chroma and timbre cross analysis of soft classical piece "Nocturne in A-Flat Major Op. 32, No.2" by Chopin.
+"embeded link to be added"
 
 ### Workout 
 
-This is chroma and timbre cross analysis of "classical piece"Nocturne in B major Op. 62" by Chopin.
-
 ```{r, echo = FALSE, message = FALSE}
 library(tidyverse)
 library(spotifyr)
@@ -571,7 +579,8 @@ bind_rows(
 
 ***
 
-Comment here
+This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
+"embeded link to be added"
 
 Chordograms {.storyboard data-navmenu=Visualisation}
 =========================================
@@ -680,6 +689,10 @@ lofi1 |>
 
 ```
 
+***
+
+This is chroma and timbre cross analysis of lofi beat piece Forgotten Past by Dosi, Wishes and Dreams
+"embeded link to be added"
 
 ### Soft Classic
 
@@ -699,6 +712,11 @@ chopin |>
   labs(x = "Time (s)", y = "")
 ```
 
+***
+
+This is chroma and timbre cross analysis of soft classical piece "Nocturne in A-Flat Major Op. 32, No.2" by Chopin.
+"embeded link to be added"
+
 ### Workout
 
 ```{r}
@@ -717,6 +735,11 @@ blackpink |>
   labs(x = "Time (s)", y = "")
 
 ```
+
+***
+
+This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
+"embeded link to be added"
 
 Track Level Summaries {.storyboard data-navmenu=Visualisation}
 =========================================
@@ -781,6 +804,10 @@ study |>
 
 ```
 
+***
+
+"embeded link to be added"
+
 ### Track Level Summaries 2
 
 ```{r}
@@ -804,6 +831,254 @@ chart4 <- study |>
 ggplotly(chart4)
 ```
 
+***
+
+"embeded link to be added"
+
+Tempograms {.storyboard data-navmenu=Visualisation}
+=========================================
+
+### Lofi
+
+```{r}
+lofi1 <- get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd")   # Forgotten Past by Dosi, Wishes and Dreams
+lofi1 |>
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+### Soft Classical 
+
+```{r}
+chopin <- get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76")   # Forgotten Past by Dosi, Wishes and Dreams
+chopin |>
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+### Archetypes = Future Funk
+
+```{r}
+futurefunk1 <- get_tidy_audio_analysis("5sd7kMz5p770fYhcD9w4rd?si=4703a27e8dc24c5b")
+futurefunk1 |>
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+### Archetypes = Workout Playlist
+
+```{r}
+blackpink <- get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865")
+blackpink |>
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+Novel Functions {.storyboard data-navmenu=Visualisation}
+=========================================
+
+### Energy-based
+
+```{r}
+lofi1 <- get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd") |>
+  select(segments) |>
+  unnest(segments)
+chopin <- get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76") |>
+  select(segments) |>
+  unnest(segments)
+futurefunk1 <- get_tidy_audio_analysis("5sd7kMz5p770fYhcD9w4rd?si=4703a27e8dc24c5b") |>
+  select(segments) |>
+  unnest(segments)
+blackpink <- get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |>
+  select(segments) |>
+  unnest(segments)
+novel_functions <-
+  bind_rows(
+    futurefunk1 |> mutate(category = "Future Funk"),
+    blackpink |> mutate(category = "Beast Mode"),
+    chopin |> mutate(category = "Soft Classical"),
+    lofi1 |> mutate(category = "Study Lofi")
+  ) 
+novel_functions |>
+  mutate(loudness_max_time = start + loudness_max_time) |>
+  arrange(loudness_max_time) |>
+  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
+  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+lofi1 |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  arrange(start) |>
+  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
+  slice(-1) |> 
+  compmus_gather_chroma() |> 
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+lofi1 |>
+  arrange(start) |>
+  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
+  slice(-1) |>
+  compmus_gather_timbre() |>
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+```
+
+### Soft Classical 
+
+```{r}
+chopin <- get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76") |>
+  select(segments) |>
+  unnest(segments)
+chopin |>
+  mutate(loudness_max_time = start + loudness_max_time) |>
+  arrange(loudness_max_time) |>
+  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
+  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+chopin |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  arrange(start) |>
+  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
+  slice(-1) |> 
+  compmus_gather_chroma() |> 
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+chopin |>
+  arrange(start) |>
+  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
+  slice(-1) |>
+  compmus_gather_timbre() |>
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+```
+
+### Archetypes = Future Funk
+
+```{r}
+futurefunk1 <- get_tidy_audio_analysis("5sd7kMz5p770fYhcD9w4rd?si=4703a27e8dc24c5b") |>
+  select(segments) |>
+  unnest(segments)
+futurefunk1 |>
+  mutate(loudness_max_time = start + loudness_max_time) |>
+  arrange(loudness_max_time) |>
+  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
+  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+futurefunk1 |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  arrange(start) |>
+  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
+  slice(-1) |> 
+  compmus_gather_chroma() |> 
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+futurefunk1 |>
+  arrange(start) |>
+  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
+  slice(-1) |>
+  compmus_gather_timbre() |>
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+```
+
+### Archetypes = Workout Playlist
+
+```{r}
+blackpink <- get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |>
+  select(segments) |>
+  unnest(segments)
+blackpink |>
+  mutate(loudness_max_time = start + loudness_max_time) |>
+  arrange(loudness_max_time) |>
+  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
+  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+blackpink |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  arrange(start) |>
+  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
+  slice(-1) |> 
+  compmus_gather_chroma() |> 
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+blackpink |>
+  arrange(start) |>
+  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
+  slice(-1) |>
+  compmus_gather_timbre() |>
+  group_by(start, duration) |> 
+  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
+  ggplot(aes(x = start + duration / 2, y = novelty)) +
+  geom_line() +
+  xlim(0, 30) +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Novelty")
+```
+
+
+
 Introduction{.storyboard data-navmenu=Introduction}
 =========================================
   
@@ -817,12 +1092,7 @@ Study playlist can play an important role in the productivity level of any study
 
 ### Focus playlists 
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6d7BJsiKHny0PHvgn62pBU?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
+"embeded link to be added"
 
 Conclusion{.storyboard}
 =========================================
