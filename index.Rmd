@@ -5,7 +5,7 @@
       vertical_layout: fill
       theme:
         version: 4
-        bootswatch: minty
+        bootswatch: cerulean
       orientation: column
       storyboard: true
       self_contained: false
@@ -22,10 +22,14 @@ library(plotly)
 library(spotifyr)
 library(compmus)
 library(dplyr)
-lofi <- get_playlist_audio_features("", "0vvXsWCC9xrXsKd4FyS8kM?si=59987a21511a4fc1")
-s_classic <- get_playlist_audio_features("", "6d7BJsiKHny0PHvgn62pBU?si=3cd9d8cce4d145c5") 
-non_lofi <- get_playlist_audio_features("", "37i9dQZF1DX76Wlfdnj7AP?si=8263b5c28feb41d7") 
-futurefunk <- get_playlist_audio_features("", "37i9dQZF1DXbjGYBfEmjR5?si=4cdc10c06f8342df")
+library(tidymodels)
+library(ggdendro)
+library(heatmaply)
+
+lofi <- get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71")
+s_classic <- get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") 
+non_lofi <- get_playlist_audio_features("", "66RrIu8zXbf3NiDX07e28Z?si=1cd6a16fe1c84826") 
+futurefunk <- get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6")
 soft_lofi <-
   bind_rows(
     futurefunk |> mutate(category = "Future Funk"),
@@ -38,29 +42,53 @@ chopin <-
   select(segments) |>
   unnest(segments) |>
   select(start, duration, pitches) #'Nocturne in A-Flat Major, Op. 32, No. 2' by Chopin
-
 ludovico <-
   get_tidy_audio_analysis("3weNRklVDqb4Rr5MhKBR3D?si=3723ad9ebb624e86") |>
   select(segments) |>
   unnest(segments) |>
   select(start, duration, pitches) #Nuvole Bianche by Ludovico Einaudi
-
 blackpink <-
   get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |>
   select(segments) |>
   unnest(segments) |>
   select(start, duration, pitches)
+dualipa <-
+  get_tidy_audio_analysis("5nujrmhLynf4yMoMtj8AQF?si=7edf27c3177b417f") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+futurefunk1 <-
+  get_tidy_audio_analysis("6lSrgTxyF9XgyLuNByH7Vm?si=e481dedf14de48f0") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+futurefunk2 <-
+  get_tidy_audio_analysis("2sj2K4VaNNkW17K1yhgrAm?si=9a95d533438b4ee5") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
 lofi1 <-
-  get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd") # Forgotten Past by Dosi, Wishes and Dreams
+  get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd") |> # Forgotten Past by Dosi, Wishes and Dreams
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
 lofi2 <-
-  get_tidy_audio_analysis("6y3y1s6eiTYsLEajJGbCkj?si=2a95b480bd31415c") # Cadenza by Lucid Keys, Mondo Loops
+  get_tidy_audio_analysis("6y3y1s6eiTYsLEajJGbCkj?si=2a95b480bd31415c") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches) # Cadenza by Lucid Keys, Mondo Loops
 lofi3 <-
-  get_tidy_audio_analysis("0UCJtleZmlwpicJkmrys4a?si=8172fd17c8834ca2") # convo by SNUG
-
+  get_tidy_audio_analysis("0UCJtleZmlwpicJkmrys4a?si=8172fd17c8834ca2") |># convo by SNUG
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
 ```
 
-Cross-playlist comparison {.storyboard data-navmenu=Visualisation}
+Cross-playlist comparison {data-navmenu=Visualisation}
 =========================================
+
+Column{data-width=700}
+-----------------------------------------
 
 ### Cross-playlist comparison
 
@@ -111,12 +139,49 @@ ggplotly(chart1)
 ***
 
   In the plot we are contrasting and comparing three playlists. First one is called "Beast Mode" with almost 10,000,000 likes on Spotify and 200 songs. Second goes the "Soft Classical Study" with 1,000 likes and 138 songs. Third goes the "Study Lofi" playlist with 7,000,000 likes and 500 songs. After several experiments and combinations of features the most interesting picture came up with accousticness on x-axis and energy on y-axis. Simultaneously we are looking at the size and color of the dots to see the level of loudness and instrumentalness, respectively. The obvious observations we can make are that first and foremost, study playlist tend to consist of songs with lower energy and higher accousticness. The other two conclusions are pretty much all of the songs in study playlists have high instrumentalness. Last conclusion is that loudness level is low in study playlists and combination of all levels can be observed for the "Beast Mode".
+
+Column{data-width=300}
+-----------------------------------------
+Description 
   
 
-Within playlist comparison (chroma features) {.storyboard data-navmenu=Visualisation}
+Within playlist comparison (chroma features) {data-navmenu=Visualisation}
 =========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### LOFI📚
+
+```{r}
+chart2 <- compmus_long_distance(
+  lofi1 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  lofi2 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "Forgotten Past by Dosi, Wishes and Dreams", y = "Lofi2") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+# ggplotly(chart2)
+chart2
+```
+
+***
+"embeded link to be added"
   
-### Within playlist comparison (chroma features) 
+### CLASSICAL🎻
 
 ```{r}
 chart2 <- compmus_long_distance(
@@ -146,10 +211,140 @@ chart2
 ***
 "embeded link to be added"
 
-Cross-playlist comparison (study playlist vs. workout playlist) {.storyboard data-navmenu=Visualisation}
+
+### WORKOUT🏆
+
+```{r}
+chart2 <- compmus_long_distance(
+  blackpink |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  dualipa |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "Pink Venom by Blackpink", y = "Levitating by Dua Lipa") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+# ggplotly(chart2)
+chart2
+```
+
+***
+"embeded link to be added"
+
+### FUTURE FUNK🎇
+
+```{r}
+chart2 <- compmus_long_distance(
+  futurefunk1 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  futurefunk2 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "I Chose Wrong by Chance", y = "Highway Night Lights by Bionsen") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+# ggplotly(chart2)
+chart2
+```
+
+***
+"embeded link to be added"
+
+Column{data-width=300}
+-----------------------------------------
+
+Description
+
+
+Cross-playlist comparison (study playlist vs. workout playlist) {data-navmenu=Visualisation}
 =========================================
 
-### Cross-playlist comparison (study playlist vs. workout playlist) 
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### LOFI📚 vs. CLASSICAL🎻
+
+```{r}
+chart3 <- compmus_long_distance(
+  lofi1 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  chopin |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "convo by SNUG", y = "Nocturne B. Major by Chopin") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+# ggplotly(chart3)
+chart3
+```
+
+***
+"embeded link to be added"
+
+### LOFI📚 vs. FUTURE FUNK🎇
+
+```{r}
+chart3 <- compmus_long_distance(
+  lofi1 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  futurefunk1 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "convo by SNUG", y = "I Chose Wrong by Chance") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+# ggplotly(chart3)
+chart3
+```
+
+***
+"embeded link to be added"
+
+### CLASSICAL🎻 vs. WORKOUT🏆
 
 ```{r}
 chart3 <- compmus_long_distance(
@@ -179,10 +374,49 @@ chart3
 ***
 "embeded link to be added"
 
-Cepstrograms {.storyboard data-navmenu=Visualisation}
+### WORKOUT🏆 vs. FUTURE FUNK🎇
+
+```{r}
+chart3 <- compmus_long_distance(
+  futurefunk1 |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  blackpink |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "I Chose Wrong by Chance", y = "Pink Venom by Blankpink") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+# ggplotly(chart3)
+chart3
+```
+
+***
+"embeded link to be added"
+
+Column{data-width=300}
+-----------------------------------------
+
+Description 
+
+
+Cepstrograms {data-navmenu=Visualisation}
 =========================================
 
-### Lofi
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### LOFI📚
 
 ```{r}
 lofi1 <-
@@ -278,7 +512,7 @@ Cepstrograms breakdown of the lofi beat by less.people from research playlist#1.
 "embeded link to be added"
 
 
-### Soft Classical
+### CLASSICAL🎻
 
 ```{r}
 chopin <-
@@ -372,7 +606,7 @@ joep |>
 Cepstrograms breakdown of the soft classic song by Chopin from research playlist#2.
 "embeded link to be added"
 
-### Workout
+### WORKOUT🏆
 
 ```{r}
 blackpink <-
@@ -465,10 +699,111 @@ lilnasx |>
 Cepstrograms breakdown of the pop song "Pink Venom" by Blackpink from research playlist#3.
 "embeded link to be added"
 
-Self Similarity Matrix {.storyboard data-navmenu=Visualisation}
+### FUTURE FUNK🎇
+
+```{r}
+futurefunk1 <-
+  get_tidy_audio_analysis("6lSrgTxyF9XgyLuNByH7Vm?si=0131824e2ffa4572") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+futurefunk2 <-
+  get_tidy_audio_analysis("2sj2K4VaNNkW17K1yhgrAm?si=e62a0008430c481a") |> # Highway Night Lights by Bionsen
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+futurefunk3 <-
+  get_tidy_audio_analysis("5raJYLpnYe0fA9aaN5oBv8?si=8e462d63fcf4444d") |> # Feeling different Ajotabeats
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+
+bind_rows(
+futurefunk1 |>
+  compmus_gather_timbre() |>
+  mutate(type = "I Chose Wrong by Chance"),
+futurefunk2 |>
+  compmus_gather_timbre() |>
+  mutate(type = "Highway Night Lights by Bionsen"),
+futurefunk3 |>
+  compmus_gather_timbre() |>
+  mutate(type = "Feeling Different by Ajotabeats")
+) |>
+  mutate() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value, title(main = 'Lofi - Capturin the Lights')
+    )
+  ) +
+  geom_tile() +
+  facet_wrap(~type) +
+  scale_fill_viridis_c() +
+  theme_classic() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude")
+```
+
+***
+
+Cepstrograms breakdown of the pop song "Pink Venom" by Blackpink from research playlist#3.
+"embeded link to be added"
+
+Column{data-width=300}
+-----------------------------------------
+
+Description 
+
+Self Similarity Matrix {data-navmenu=Visualisation}
 =========================================
 
-### Lofi
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### LOFI📚
 
 ```{r, echo = FALSE, message = FALSE}
 library(tidyverse)
@@ -506,7 +841,7 @@ bind_rows(
 This is chroma and timbre cross analysis of lofi beat piece Forgotten Past by Dosi, Wishes and Dreams
 "embeded link to be added"
 
-### Soft Classical
+### CLASSICAL🎻
 
 ```{r, echo = FALSE, message = FALSE}
 library(tidyverse)
@@ -544,7 +879,7 @@ bind_rows(
 This is chroma and timbre cross analysis of soft classical piece "Nocturne in A-Flat Major Op. 32, No.2" by Chopin.
 "embeded link to be added"
 
-### Workout 
+### WORKOUT🏆
 
 ```{r, echo = FALSE, message = FALSE}
 library(tidyverse)
@@ -582,10 +917,58 @@ bind_rows(
 This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
 "embeded link to be added"
 
-Chordograms {.storyboard data-navmenu=Visualisation}
+
+### FUTURE FUNK🎇
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+
+bind_rows(
+  futurefunk1 |>
+    compmus_self_similarity(pitches, "aitchison") |>
+    mutate(d = d / max(d), type = "Chroma"),
+  futurefunk1 |>
+    compmus_self_similarity(timbre, "euclidean") |>
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  facet_wrap(~type) +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() +
+  labs(x = "", y = "")
+```
+
+***
+
+This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
+"embeded link to be added"
+
+Column{data-width=300}
+-----------------------------------------
+
+Description
+
+Chordograms {data-navmenu=Visualisation}
 =========================================
 
-### Lofi 
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### LOFI📚
+
 ```{r}
 circshift <- function(v, n) {
   if (n == 0) v else c(tail(v, n), head(v, -n))
@@ -694,7 +1077,7 @@ lofi1 |>
 This is chroma and timbre cross analysis of lofi beat piece Forgotten Past by Dosi, Wishes and Dreams
 "embeded link to be added"
 
-### Soft Classic
+### CLASSICAL🎻
 
 ```{r, echo=FALSE}
 chopin |> 
@@ -717,7 +1100,7 @@ chopin |>
 This is chroma and timbre cross analysis of soft classical piece "Nocturne in A-Flat Major Op. 32, No.2" by Chopin.
 "embeded link to be added"
 
-### Workout
+### WORKOUT🏆
 
 ```{r}
 blackpink |> 
@@ -741,36 +1124,919 @@ blackpink |>
 This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
 "embeded link to be added"
 
-Track Level Summaries {.storyboard data-navmenu=Visualisation}
+###  FUTURE FUNK🎇
+
+```{r}
+futurefunk1 |> 
+  compmus_match_pitch_template(
+    key_templates,         # Change to chord_templates if descired
+    method = "euclidean",  # Try different distance metrics
+    norm = "manhattan"     # Try different norms
+  ) |>
+  ggplot(
+    aes(x = start + duration / 2, width = duration, y = name, fill = d)
+  ) +
+  geom_tile() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "")
+
+```
+
+***
+
+This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
+"embeded link to be added"
+
+Column{data-width=300}
+-----------------------------------------
+
+Description 
+
+
+Clustering - Lofi {data-navmenu=Visualisation}
 =========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+lofi <-
+  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+lofi_study_s <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+study_dist_s <- dist(lofi_study_s, method = "euclidean")
+
+study_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  lofi_study_s,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+lofi <-
+  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+lofi_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+study_dist_a <- dist(lofi_study_a, method = "euclidean")
+
+study_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  lofi_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+lofi <-
+  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+lofi_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+study_dist_c <- dist(lofi_study_c, method = "euclidean")
+
+study_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  lofi_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data_width = 300}
+-----------------------------------------
+Description
+
+
+Clustering - Classical {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+soft_classical <-
+  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+soft_study_s <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+soft_dist_s <- dist(soft_study_s, method = "euclidean")
+
+soft_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  soft_study_s,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+soft_classical <-
+  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+soft_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+soft_dist_a <- dist(soft_study_a, method = "euclidean")
+
+soft_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  soft_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+soft_classical <-
+  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+soft_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+soft_dist_c <- dist(soft_study_c, method = "euclidean")
+
+soft_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  soft_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+Description
+
+Clustering - Workout {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+workout <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+workout_study_s <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+workout_dist_s <- dist(workout_study_s, method = "euclidean")
+
+workout_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  workout_study_s,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+workout <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+workout_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+workout_dist_a <- dist(workout_study_a, method = "euclidean")
+
+workout_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  workout_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+workout <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+workout_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+workout_dist_c <- dist(workout_study_c, method = "euclidean")
+
+workout_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  workout_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+
+Description
+
+Clustering - Future Funk {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+futurefunk <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+future_study_s <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+future_dist_s <- dist(future_study_s, method = "euclidean")
+
+future_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  future_study_s,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+futurefunk <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+future_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+future_dist_a <- dist(future_study_a, method = "euclidean")
+
+future_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  future_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+futurefunk <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+future_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+future_dist_c <- dist(future_study_c, method = "euclidean")
+
+future_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  future_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+Description
+
+Track Level Summaries {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
 ### Track Level Summaries 1
 
 ```{r}
 lofi <-
   get_playlist_audio_features(
     "thesoundsofspotify",
-    "0vvXsWCC9xrXsKd4FyS8kM?si=33fc00fd735f4afe"
+    "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71"
   ) |>
   slice(1:30) |>
   add_audio_analysis()
 soft_classical <-
   get_playlist_audio_features(
     "thesoundsofspotify",
-    "6d7BJsiKHny0PHvgn62pBU?si=3cd9d8cce4d145c5"
+    "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b"
   ) |>
   slice(1:30) |>
   add_audio_analysis()
 workout <-
   get_playlist_audio_features(
     "thesoundsofspotify",
-    "37i9dQZF1DX76Wlfdnj7AP?si=c03ee87232224cf8"
+    "66RrIu8zXbf3NiDX07e28Z?si=1cd6a16fe1c84826"
   ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+futurefunk <- get_playlist_audio_features("thesoundsofspotify","5j5HRbB3Qy0GPGVbCrKP2G?si=bf6a2493733c40c5") |>
   slice(1:30) |>
   add_audio_analysis()
 study <-
   lofi |>
   mutate(genre = "Lofi") |>
-  bind_rows(workout |> mutate(genre = "Workout"), soft_classical |> mutate(genre = "Soft Classical"))
+  bind_rows(workout |> mutate(genre = "Workout"), soft_classical |> mutate(genre = "Soft Classical"), futurefunk |> mutate(genre = "Future Funk"))
 study |>
   mutate(
     sections =
@@ -835,10 +2101,17 @@ ggplotly(chart4)
 
 "embeded link to be added"
 
-Tempograms {.storyboard data-navmenu=Visualisation}
+Column{data-width=300}
+-----------------------------------------
+Description
+
+Tempograms {data-navmenu=Visualisation}
 =========================================
 
-### Lofi
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### LOFI📚
 
 ```{r}
 lofi1 <- get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd")   # Forgotten Past by Dosi, Wishes and Dreams
@@ -851,7 +2124,7 @@ lofi1 |>
   theme_classic()
 ```
 
-### Soft Classical 
+### CLASSICAL🎻
 
 ```{r}
 chopin <- get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76")   # Forgotten Past by Dosi, Wishes and Dreams
@@ -864,20 +2137,7 @@ chopin |>
   theme_classic()
 ```
 
-### Archetypes = Future Funk
-
-```{r}
-futurefunk1 <- get_tidy_audio_analysis("5sd7kMz5p770fYhcD9w4rd?si=4703a27e8dc24c5b")
-futurefunk1 |>
-  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
-  ggplot(aes(x = time, y = bpm, fill = power)) +
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +
-  labs(x = "Time (s)", y = "Tempo (BPM)") +
-  theme_classic()
-```
-
-### Archetypes = Workout Playlist
+### WORKOUT🏆 
 
 ```{r}
 blackpink <- get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865")
@@ -890,194 +2150,23 @@ blackpink |>
   theme_classic()
 ```
 
-Novel Functions {.storyboard data-navmenu=Visualisation}
-=========================================
 
-### Energy-based
+### FUTURE FUNK🎇
 
 ```{r}
-lofi1 <- get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd") |>
-  select(segments) |>
-  unnest(segments)
-chopin <- get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76") |>
-  select(segments) |>
-  unnest(segments)
-futurefunk1 <- get_tidy_audio_analysis("5sd7kMz5p770fYhcD9w4rd?si=4703a27e8dc24c5b") |>
-  select(segments) |>
-  unnest(segments)
-blackpink <- get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |>
-  select(segments) |>
-  unnest(segments)
-novel_functions <-
-  bind_rows(
-    futurefunk1 |> mutate(category = "Future Funk"),
-    blackpink |> mutate(category = "Beast Mode"),
-    chopin |> mutate(category = "Soft Classical"),
-    lofi1 |> mutate(category = "Study Lofi")
-  ) 
-novel_functions |>
-  mutate(loudness_max_time = start + loudness_max_time) |>
-  arrange(loudness_max_time) |>
-  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
-  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-lofi1 |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  arrange(start) |>
-  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
-  slice(-1) |> 
-  compmus_gather_chroma() |> 
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-lofi1 |>
-  arrange(start) |>
-  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
-  slice(-1) |>
-  compmus_gather_timbre() |>
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-```
-
-### Soft Classical 
-
-```{r}
-chopin <- get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76") |>
-  select(segments) |>
-  unnest(segments)
-chopin |>
-  mutate(loudness_max_time = start + loudness_max_time) |>
-  arrange(loudness_max_time) |>
-  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
-  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-chopin |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  arrange(start) |>
-  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
-  slice(-1) |> 
-  compmus_gather_chroma() |> 
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-chopin |>
-  arrange(start) |>
-  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
-  slice(-1) |>
-  compmus_gather_timbre() |>
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-```
-
-### Archetypes = Future Funk
-
-```{r}
-futurefunk1 <- get_tidy_audio_analysis("5sd7kMz5p770fYhcD9w4rd?si=4703a27e8dc24c5b") |>
-  select(segments) |>
-  unnest(segments)
+futurefunk1 <- get_tidy_audio_analysis("62jdesXaWtAVtMK75zJn4h?si=d40559b27bd7487a") # "Flashback' by Rhodes Rodosu
 futurefunk1 |>
-  mutate(loudness_max_time = start + loudness_max_time) |>
-  arrange(loudness_max_time) |>
-  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
-  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-futurefunk1 |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  arrange(start) |>
-  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
-  slice(-1) |> 
-  compmus_gather_chroma() |> 
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-futurefunk1 |>
-  arrange(start) |>
-  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
-  slice(-1) |>
-  compmus_gather_timbre() |>
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
 ```
 
-### Archetypes = Workout Playlist
-
-```{r}
-blackpink <- get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |>
-  select(segments) |>
-  unnest(segments)
-blackpink |>
-  mutate(loudness_max_time = start + loudness_max_time) |>
-  arrange(loudness_max_time) |>
-  mutate(delta_loudness = loudness_max - lag(loudness_max)) |>
-  ggplot(aes(x = loudness_max_time, y = pmax(0, delta_loudness))) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-blackpink |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  arrange(start) |>
-  mutate(pitches = map2(pitches, lag(pitches), `-`)) |>
-  slice(-1) |> 
-  compmus_gather_chroma() |> 
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-blackpink |>
-  arrange(start) |>
-  mutate(timbre = map2(timbre, lag(timbre), `-`)) |>
-  slice(-1) |>
-  compmus_gather_timbre() |>
-  group_by(start, duration) |> 
-  summarise(novelty = sum(log1p(pmax(value, 0)))) |> 
-  ggplot(aes(x = start + duration / 2, y = novelty)) +
-  geom_line() +
-  xlim(0, 30) +
-  theme_minimal() +
-  labs(x = "Time (s)", y = "Novelty")
-```
-
-
+Column{data-width=300}
+-----------------------------------------
+Description 
 
 Introduction{.storyboard data-navmenu=Introduction}
 =========================================
