@@ -84,6 +84,41 @@ lofi3 <-
   select(start, duration, pitches)
 ```
 
+Introduction{.storyboard}
+=========================================
+  
+### What features recipe goes into making the best study playlist?
+
+Remember that night where you had study very late night or a weekend full of just reviewing and studying before the exam next week? Many of us can agree to the fact that a "good playlist" can *boost the mood of any study or work session*. "Good playlist" can be like a breath of fresh air when you are reaching the limit for that day and don't feel as *productive* anymore to get tasks and to-do list done. [Research #1](https://eric.ed.gov/?id=ED478771) has shown that soft music makes them feel comfortable, focused, and relaxed by perfectly building the environment to study (Dinsmore, 2003, p. 19).
+
+Adrian Low, a chartered psychologist who specialises in stress research, tells how certain music genres can help people de-stress as well as set the tone for better concentration. The psychologist suggested choosing songs between *60 to 70 beats per minute (bpm)*, such as jazz, and avoiding those with jarring sounds or sudden changes in tempo.Language plays a part too. It can actually be distracting if a song is in a language that we understand because we will be drawn into the music
+
+However, [another research](https://content.iospress.com/articles/work/wor01141) has shown that background music influences listener attention. This influence has more to do with listener fondness for the music than with type of music. Compared to situations without background music, the likelihood of background music affecting test-taker attention performance is likely to increase with the degree to which the test-taker likes or dislikes the music. (Huang, Rong-Hwa, 2011). Similar results were received by a [research conducted by Cardiff Metropolitan University](https://onlinelibrary-wiley-com.ezp1.lib.umn.edu/doi/pdf/10.1002/acp.2994) that showed if people listen to songs they dislike, it decreases productivity. Surprisingly, grooving to their favorite tracks can cause them to lose focus, too.
+  
+We can sum everything up and say that choosing the right music that it is neither liked or disliked can be a challenge and it might be the reasoning why there exists so many study playlists or background music playlists. Therefore following can be the **formula** for figuring out the perfect study playlist for you, first of all, you have to be *neutral* about the playlist. (I know it is hard, but you shouldn't get attached to the playlist). Second of all, *no lyrics* will be better for you. Even though you had a bad day which you wanna sing off, or sing along to boost your mood, low speecheability will be better for you. Lastly, several researches made by psychologists and neuroscientists has recommended certain ranges for certain *features* like tempo. 
+
+In my corpus, I will be testing all these theories and ensirong the accuracy of the secret formula to a productive study session. I will be working with lo-fi beats. Lo-fi, short for “low fidelity”, describes tracks recorded with flaws such as background noise or sounds like raindrops or soft taps. The music in Lo-fi does not feature lyrics, so it does not take your attention away, especially for those who are reading and writing. To increase the level of precision and accuracy I will be doing a cross playlist analysis of Soft Classical music playlist, Workout playlist and Future Funk playlist. The strategy that will be followed for effective results is visual comparison of the focus playlists which are Lo-fi playlist and Soft-Classical playlist within each other and against the archetypes: Workout and Future Funk (you will be able to learn more about the focus and control playlists on the next tab).
+
+### Focus playlists 
+
+The 4 playlists we are working with have many similarities and many differences.
+The *lofi playlist* "Study Lofi📚" by Lofi Girl is a public playlist that has over 7 million likes on Spotify, **500 songs worth of 20 hr 44 mins** of total listening time. One of the unique features of the playlist is that it gets updated, shuffled, renewed and reorganised every day. It is a collection of chill beats - perfect to help you relax and study. 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+The *soft-classical playlist* made by Umut Aytac is a public playlist made a random spotify user which consists of **131 songs worth of 7 hr 45 mins** of listening time. It is a playlist put together by the wide range of musicians starting with Chopin and ending with brilliant modern musicians like Sherwood Roberts. 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6d7BJsiKHny0PHvgn62pBU?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+The *workout playlist* "Beast Mode" was created by Spotify and has collected almost 10 million likes. It is a collection of **182 songs worth of 9hr 20 mins** of listening. The playlists gets occasionally updated based on the trending new songs and rankings. 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+The *future funk* playlist was chosen as the archetype to Lo-fi beats. It is another playlist created by Spotify which collected around 300 000 likes and consist of **100 songs with listening time over 5 hr 42 mins**. Future funk is a genre of music that uses elements of funk, disco and Japanese music with nostalgic influences. It's very upbeat, funky and is usually associated with the aesthetic of '90s anime or consumer culture.
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbjGYBfEmjR5?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+
 Cross-playlist comparison {data-navmenu=Visualisation}
 =========================================
 
@@ -136,13 +171,10 @@ ggplotly(chart1)
 
 ```
 
-***
-
-  In the plot we are contrasting and comparing three playlists. First one is called "Beast Mode" with almost 10,000,000 likes on Spotify and 200 songs. Second goes the "Soft Classical Study" with 1,000 likes and 138 songs. Third goes the "Study Lofi" playlist with 7,000,000 likes and 500 songs. After several experiments and combinations of features the most interesting picture came up with accousticness on x-axis and energy on y-axis. Simultaneously we are looking at the size and color of the dots to see the level of loudness and instrumentalness, respectively. The obvious observations we can make are that first and foremost, study playlist tend to consist of songs with lower energy and higher accousticness. The other two conclusions are pretty much all of the songs in study playlists have high instrumentalness. Last conclusion is that loudness level is low in study playlists and combination of all levels can be observed for the "Beast Mode".
 
 Column{data-width=300}
 -----------------------------------------
-Description 
+In the plot we are contrasting and comparing three playlists. First one is called "Beast Mode" with almost 10,000,000 likes on Spotify and 200 songs. Second goes the "Soft Classical Study" with 1,000 likes and 138 songs. Third goes the "Study Lofi" playlist with 7,000,000 likes and 500 songs. After several experiments and combinations of features the most interesting picture came up with accousticness on x-axis and energy on y-axis. Simultaneously we are looking at the size and color of the dots to see the level of loudness and instrumentalness, respectively. The obvious observations we can make are that first and foremost, study playlist tend to consist of songs with lower energy and higher accousticness. The other two conclusions are pretty much all of the songs in study playlists have high instrumentalness. Last conclusion is that loudness level is low in study playlists and combination of all levels can be observed for the "Beast Mode".
   
 
 Within playlist comparison (chroma features) {data-navmenu=Visualisation}
@@ -406,7 +438,6 @@ chart3
 
 Column{data-width=300}
 -----------------------------------------
-
 Description 
 
 
@@ -958,8 +989,8 @@ This is chroma and timbre cross analysis of Pink Venom by Blackpink.
 
 Column{data-width=300}
 -----------------------------------------
-
 Description
+
 
 Chordograms {data-navmenu=Visualisation}
 =========================================
@@ -1072,11 +1103,6 @@ lofi1 |>
 
 ```
 
-***
-
-This is chroma and timbre cross analysis of lofi beat piece Forgotten Past by Dosi, Wishes and Dreams
-"embeded link to be added"
-
 ### CLASSICAL🎻
 
 ```{r, echo=FALSE}
@@ -1094,11 +1120,6 @@ chopin |>
   theme_minimal() +
   labs(x = "Time (s)", y = "")
 ```
-
-***
-
-This is chroma and timbre cross analysis of soft classical piece "Nocturne in A-Flat Major Op. 32, No.2" by Chopin.
-"embeded link to be added"
 
 ### WORKOUT🏆
 
@@ -1119,11 +1140,6 @@ blackpink |>
 
 ```
 
-***
-
-This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
-"embeded link to be added"
-
 ###  FUTURE FUNK🎇
 
 ```{r}
@@ -1143,862 +1159,9 @@ futurefunk1 |>
 
 ```
 
-***
-
-This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
-"embeded link to be added"
-
 Column{data-width=300}
 -----------------------------------------
-
 Description 
-
-
-Clustering - Lofi {data-navmenu=Visualisation}
-=========================================
-
-Column{data-width=700 .tabset}
------------------------------------------
-
-### Single
-
-```{r}
-lofi <-
-  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-lofi_study_s <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-study_dist_s <- dist(lofi_study_s, method = "euclidean")
-
-study_dist_s |> 
-  hclust(method = "single") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  lofi_study_s,
-  hclustfun = hclust,
-  hclust_method = "single",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Average
-
-```{r}
-lofi <-
-  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-lofi_study_a <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-study_dist_a <- dist(lofi_study_a, method = "euclidean")
-
-study_dist_a |> 
-  hclust(method = "average") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  lofi_study_a,
-  hclustfun = hclust,
-  hclust_method = "average",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Complete
-
-```{r}
-lofi <-
-  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-lofi_study_c <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-study_dist_c <- dist(lofi_study_c, method = "euclidean")
-
-study_dist_c |> 
-  hclust(method = "complete") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  lofi_study_c,
-  hclustfun = hclust,
-  hclust_method = "complete",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-Column{data_width = 300}
------------------------------------------
-Description
-
-
-Clustering - Classical {data-navmenu=Visualisation}
-=========================================
-
-Column{data-width=700 .tabset}
------------------------------------------
-
-### Single
-
-```{r}
-soft_classical <-
-  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-soft_study_s <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-soft_dist_s <- dist(soft_study_s, method = "euclidean")
-
-soft_dist_s |> 
-  hclust(method = "single") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  soft_study_s,
-  hclustfun = hclust,
-  hclust_method = "single",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Average
-
-```{r}
-soft_classical <-
-  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-soft_study_a <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-soft_dist_a <- dist(soft_study_a, method = "euclidean")
-
-soft_dist_a |> 
-  hclust(method = "average") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  soft_study_a,
-  hclustfun = hclust,
-  hclust_method = "average",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Complete
-
-```{r}
-soft_classical <-
-  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-soft_study_c <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-soft_dist_c <- dist(soft_study_c, method = "euclidean")
-
-soft_dist_c |> 
-  hclust(method = "complete") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  soft_study_c,
-  hclustfun = hclust,
-  hclust_method = "complete",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-Column{data-width=300}
------------------------------------------
-Description
-
-Clustering - Workout {data-navmenu=Visualisation}
-=========================================
-
-Column{data-width=700 .tabset}
------------------------------------------
-
-### Single
-
-```{r}
-workout <-
-  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-workout_study_s <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-workout_dist_s <- dist(workout_study_s, method = "euclidean")
-
-workout_dist_s |> 
-  hclust(method = "single") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  workout_study_s,
-  hclustfun = hclust,
-  hclust_method = "single",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Average
-
-```{r}
-workout <-
-  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-workout_study_a <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-workout_dist_a <- dist(workout_study_a, method = "euclidean")
-
-workout_dist_a |> 
-  hclust(method = "average") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  workout_study_a,
-  hclustfun = hclust,
-  hclust_method = "average",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Complete
-
-```{r}
-workout <-
-  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-workout_study_c <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-workout_dist_c <- dist(workout_study_c, method = "euclidean")
-
-workout_dist_c |> 
-  hclust(method = "complete") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  workout_study_c,
-  hclustfun = hclust,
-  hclust_method = "complete",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-Column{data-width=300}
------------------------------------------
-
-Description
-
-Clustering - Future Funk {data-navmenu=Visualisation}
-=========================================
-
-Column{data-width=700 .tabset}
------------------------------------------
-
-### Single
-
-```{r}
-futurefunk <-
-  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-future_study_s <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-future_dist_s <- dist(future_study_s, method = "euclidean")
-
-future_dist_s |> 
-  hclust(method = "single") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  future_study_s,
-  hclustfun = hclust,
-  hclust_method = "single",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Average
-
-```{r}
-futurefunk <-
-  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-future_study_a <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-future_dist_a <- dist(future_study_a, method = "euclidean")
-
-future_dist_a |> 
-  hclust(method = "average") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  future_study_a,
-  hclustfun = hclust,
-  hclust_method = "average",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-### Complete
-
-```{r}
-futurefunk <-
-  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
-  slice(1:50) |>
-  add_audio_analysis() |>
-  mutate(
-    segments = map2(segments, key, compmus_c_transpose),
-    pitches =
-      map(segments,
-          compmus_summarise, pitches,
-          method = "mean", norm = "manhattan"
-      ),
-    timbre =
-      map(
-        segments,
-        compmus_summarise, timbre,
-        method = "mean"
-      )
-  ) |>
-  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
-  mutate_at(vars(pitches, timbre), map, bind_rows) |>
-  unnest(cols = c(pitches, timbre))
-
-future_study_c <-
-  recipe(
-    track.name ~
-      danceability +
-      energy +
-      loudness +
-      speechiness +
-      acousticness +
-      instrumentalness +
-      liveness +
-      valence +
-      tempo +
-      duration +
-      C + `C#|Db` + D + `D#|Eb` +
-      E + `F` + `F#|Gb` + G +
-      `G#|Ab` + A + `A#|Bb` + B +
-      c01 + c02 + c03 + c04 + c05 + c06 +
-      c07 + c08 + c09 + c10 + c11 + c12,
-    data = lofi
-  ) |>
-  step_center(all_predictors()) |>
-  step_scale(all_predictors()) |> 
-  # step_range(all_predictors()) |> 
-  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
-  juice() |>
-  column_to_rownames("track.name")
-
-future_dist_c <- dist(future_study_c, method = "euclidean")
-
-future_dist_c |> 
-  hclust(method = "complete") |> # Try single, average, and complete.
-  dendro_data() |>
-  ggdendrogram()
-
-heatmaply(
-  future_study_c,
-  hclustfun = hclust,
-  hclust_method = "complete",  # Change for single, average, or complete linkage.
-  dist_method = "euclidean"
-)
-```
-
-Column{data-width=300}
------------------------------------------
-Description
 
 Track Level Summaries {data-navmenu=Visualisation}
 =========================================
@@ -2070,10 +1233,6 @@ study |>
 
 ```
 
-***
-
-"embeded link to be added"
-
 ### Track Level Summaries 2
 
 ```{r}
@@ -2097,13 +1256,285 @@ chart4 <- study |>
 ggplotly(chart4)
 ```
 
-***
-
-"embeded link to be added"
-
 Column{data-width=300}
 -----------------------------------------
 Description
+
+Clustering - Lofi {data-navmenu=Visualisation}
+=========================================
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Lofi - Single
+```{r}
+lofi_1 <-
+  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+lofi_study_s_1 <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi_1
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi_1 |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+study_dist_s <- dist(lofi_study_s_1, method = "euclidean")
+
+study_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  lofi_study_s_1,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Soft Classical - Single
+
+```{r}
+soft <-
+  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=df0c7418ea6d4dde") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+soft_study_s_1 <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = soft
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(soft |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+soft_dist_s <- dist(soft_study_s_1, method = "euclidean")
+
+soft_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  soft_study_s_1,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Workout - Single
+
+```{r}
+workout <-
+  get_playlist_audio_features("", "66RrIu8zXbf3NiDX07e28Z?si=4a602635f1994252") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+workout_study_s_1 <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = workout
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(workout |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+workout_dist_s <- dist(workout_study_s_1, method = "euclidean")
+
+workout_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  workout_study_s_1,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Future Funk - Single
+
+```{r}
+futurefunk <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+futurefunk_study_s_1 <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = futurefunk
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(futurefunk |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+futurefunk_dist_s <- dist(futurefunk_study_s_1, method = "euclidean")
+
+futurefunk_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  futurefunk_study_s_1,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+Description 
 
 Tempograms {data-navmenu=Visualisation}
 =========================================
@@ -2166,22 +1597,8 @@ futurefunk1 |>
 
 Column{data-width=300}
 -----------------------------------------
-Description 
+Description
 
-Introduction{.storyboard data-navmenu=Introduction}
-=========================================
-  
-### What features recipe goes into making the best study playlist?
-  
-```{r}
-
-```
-
-Study playlist can play an important role in the productivity level of any study session. While studying together with friends we ended up in situation where we had to listen to our individual playlists in headphones, because each of our taste in study music was very different. Therefore the first question I want to look into is "What makes any music or song a study-friendly option?". Does it involve its slow rhytm, low dancebility, low energy, low dancebility, yet the most important question I want to figure out is the level of accousticness and instrumentalness across various types of study playlists. My main research question is what combination of the main features classify the music into study friendly. It will be possible to compare the opposite of study music, for example, workout or party playlist and contrast it to study music. 
-
-### Focus playlists 
-
-"embeded link to be added"
 
 Conclusion{.storyboard}
 =========================================
