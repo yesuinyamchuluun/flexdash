@@ -180,7 +180,7 @@ In the plot we are contrasting and comparing three playlists. First one is calle
 Within playlist comparison (chroma features) {data-navmenu=Visualisation}
 =========================================
 
-Column{data-width=700 .tabset}
+Column{data-width=850 .tabset}
 -----------------------------------------
 
 ### LOFI📚
@@ -209,9 +209,6 @@ chart2 <- compmus_long_distance(
 # ggplotly(chart2)
 chart2
 ```
-
-***
-"embeded link to be added"
   
 ### CLASSICAL🎻
 
@@ -240,10 +237,6 @@ chart2 <- compmus_long_distance(
 chart2
 ```
 
-***
-"embeded link to be added"
-
-
 ### WORKOUT🏆
 
 ```{r}
@@ -270,9 +263,6 @@ chart2 <- compmus_long_distance(
 # ggplotly(chart2)
 chart2
 ```
-
-***
-"embeded link to be added"
 
 ### FUTURE FUNK🎇
 
@@ -301,13 +291,28 @@ chart2 <- compmus_long_distance(
 chart2
 ```
 
-***
-"embeded link to be added"
 
-Column{data-width=300}
+Column{data-width=150}
 -----------------------------------------
+Lofi:
 
-Description
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5yzk0dn1DmFcTkon5JrtTc?utm_source=generator&theme=0" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+Soft:
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3weNRklVDqb4Rr5MhKBR3D?utm_source=generator" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+Workout:
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5nujrmhLynf4yMoMtj8AQF?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+Future funk:
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2sj2K4VaNNkW17K1yhgrAm?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 
 Cross-playlist comparison (study playlist vs. workout playlist) {data-navmenu=Visualisation}
@@ -343,9 +348,6 @@ chart3 <- compmus_long_distance(
 chart3
 ```
 
-***
-"embeded link to be added"
-
 ### LOFI📚 vs. FUTURE FUNK🎇
 
 ```{r}
@@ -372,9 +374,6 @@ chart3 <- compmus_long_distance(
 # ggplotly(chart3)
 chart3
 ```
-
-***
-"embeded link to be added"
 
 ### CLASSICAL🎻 vs. WORKOUT🏆
 
@@ -403,9 +402,6 @@ chart3 <- compmus_long_distance(
 chart3
 ```
 
-***
-"embeded link to be added"
-
 ### WORKOUT🏆 vs. FUTURE FUNK🎇
 
 ```{r}
@@ -433,8 +429,6 @@ chart3 <- compmus_long_distance(
 chart3
 ```
 
-***
-"embeded link to be added"
 
 Column{data-width=300}
 -----------------------------------------
@@ -537,12 +531,6 @@ lofi3 |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude")
 ```
 
-***
-
-Cepstrograms breakdown of the lofi beat by less.people from research playlist#1.
-"embeded link to be added"
-
-
 ### CLASSICAL🎻
 
 ```{r}
@@ -632,11 +620,6 @@ joep |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude")
 ```
 
-***
-
-Cepstrograms breakdown of the soft classic song by Chopin from research playlist#2.
-"embeded link to be added"
-
 ### WORKOUT🏆
 
 ```{r}
@@ -724,11 +707,6 @@ lilnasx |>
   theme_classic() +
   labs(x = "Time (s)", y = NULL, fill = "Magnitude")
 ```
-
-***
-
-Cepstrograms breakdown of the pop song "Pink Venom" by Blackpink from research playlist#3.
-"embeded link to be added"
 
 ### FUTURE FUNK🎇
 
@@ -818,15 +796,25 @@ futurefunk3 |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude")
 ```
 
-***
-
-Cepstrograms breakdown of the pop song "Pink Venom" by Blackpink from research playlist#3.
-"embeded link to be added"
-
 Column{data-width=300}
 -----------------------------------------
+Lofi:
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6y3y1s6eiTYsLEajJGbCkj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5yzk0dn1DmFcTkon5JrtTc?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Soft Classical: 
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/55U56qbqS1g1PaeyIznUjr?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3weNRklVDqb4Rr5MhKBR3D?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Workout:
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/27NovPIUIRrOZoCHxABJwK?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5nujrmhLynf4yMoMtj8AQF?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Future Funk:
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5raJYLpnYe0fA9aaN5oBv8?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2sj2K4VaNNkW17K1yhgrAm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2sj2K4VaNNkW17K1yhgrAm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
 
-Description 
 
 Self Similarity Matrix {data-navmenu=Visualisation}
 =========================================
@@ -867,11 +855,6 @@ bind_rows(
   labs(x = "", y = "")
 ```
 
-***
-
-This is chroma and timbre cross analysis of lofi beat piece Forgotten Past by Dosi, Wishes and Dreams
-"embeded link to be added"
-
 ### CLASSICAL🎻
 
 ```{r, echo = FALSE, message = FALSE}
@@ -905,10 +888,6 @@ bind_rows(
   labs(x = "", y = "")
 ```
 
-***
-
-This is chroma and timbre cross analysis of soft classical piece "Nocturne in A-Flat Major Op. 32, No.2" by Chopin.
-"embeded link to be added"
 
 ### WORKOUT🏆
 
@@ -942,11 +921,6 @@ bind_rows(
   theme_classic() +
   labs(x = "", y = "")
 ```
-
-***
-
-This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
-"embeded link to be added"
 
 
 ### FUTURE FUNK🎇
@@ -982,14 +956,14 @@ bind_rows(
   labs(x = "", y = "")
 ```
 
-***
-
-This is chroma and timbre cross analysis of Pink Venom by Blackpink. 
-"embeded link to be added"
 
 Column{data-width=300}
 -----------------------------------------
-Description
+Songs:
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
 
 
 Chordograms {data-navmenu=Visualisation}
@@ -1161,7 +1135,11 @@ futurefunk1 |>
 
 Column{data-width=300}
 -----------------------------------------
-Description 
+Songs:
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
 
 Track Level Summaries {data-navmenu=Visualisation}
 =========================================
@@ -1597,8 +1575,11 @@ futurefunk1 |>
 
 Column{data-width=300}
 -----------------------------------------
-Description
-
+Songs: 
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
 
 Conclusion{.storyboard}
 =========================================
@@ -1608,3 +1589,5 @@ Conclusion{.storyboard}
 ```{r}
 
 ```
+
+
