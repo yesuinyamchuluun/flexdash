@@ -1,5 +1,5 @@
 ---
-  title: "Key to a Productive Study Session"
+  title: Yesui's formula to "good study playlist"
   output: 
     flexdashboard::flex_dashboard:
       vertical_layout: fill
@@ -9,7 +9,7 @@
       orientation: column
       storyboard: true
       self_contained: false
-  date: "2023-03-17"
+  date: "2023-03-31"
 ---
   
 ```{r setup, include=FALSE}
@@ -89,7 +89,7 @@ Introduction{.storyboard}
   
 ### What features recipe goes into making the best study playlist?
 
-Remember that night where you had study very late night or a weekend full of just reviewing and studying before the exam next week? Many of us can agree to the fact that a "good playlist" can *boost the mood of any study or work session*. "Good playlist" can be like a breath of fresh air when you are reaching the limit for that day and don't feel as *productive* anymore to get tasks and to-do list done. [Research #1](https://eric.ed.gov/?id=ED478771) has shown that soft music makes them feel comfortable, focused, and relaxed by perfectly building the environment to study (Dinsmore, 2003, p. 19).
+Remember that night where you had study very late night or a weekend full of just reviewing and studying before the exam next week? Many of us can agree to the fact that a "good study playlist" can *boost the mood of any study or work session*. "Good playlist" can be like a breath of fresh air when you are reaching the limit for that day and don't feel as *productive* anymore to get tasks and to-do list done. [Research #1](https://eric.ed.gov/?id=ED478771) has shown that soft music makes them feel comfortable, focused, and relaxed by perfectly building the environment to study (Dinsmore, 2003, p. 19).
 
 Adrian Low, a chartered psychologist who specialises in stress research, tells how certain music genres can help people de-stress as well as set the tone for better concentration. The psychologist suggested choosing songs between *60 to 70 beats per minute (bpm)*, such as jazz, and avoiding those with jarring sounds or sudden changes in tempo.Language plays a part too. It can actually be distracting if a song is in a language that we understand because we will be drawn into the music
 
@@ -97,32 +97,58 @@ However, [another research](https://content.iospress.com/articles/work/wor01141)
   
 We can sum everything up and say that choosing the right music that it is neither liked or disliked can be a challenge and it might be the reasoning why there exists so many study playlists or background music playlists. Therefore following can be the **formula** for figuring out the perfect study playlist for you, first of all, you have to be *neutral* about the playlist. (I know it is hard, but you shouldn't get attached to the playlist). Second of all, *no lyrics* will be better for you. Even though you had a bad day which you wanna sing off, or sing along to boost your mood, low speecheability will be better for you. Lastly, several researches made by psychologists and neuroscientists has recommended certain ranges for certain *features* like tempo. 
 
-In my corpus, I will be testing all these theories and ensirong the accuracy of the secret formula to a productive study session. I will be working with lo-fi beats. Lo-fi, short for “low fidelity”, describes tracks recorded with flaws such as background noise or sounds like raindrops or soft taps. The music in Lo-fi does not feature lyrics, so it does not take your attention away, especially for those who are reading and writing. To increase the level of precision and accuracy I will be doing a cross playlist analysis of Soft Classical music playlist, Workout playlist and Future Funk playlist. The strategy that will be followed for effective results is visual comparison of the focus playlists which are Lo-fi playlist and Soft-Classical playlist within each other and against the archetypes: Workout and Future Funk (you will be able to learn more about the focus and control playlists on the next tab).
+In my corpus, I will be testing all these theories and ensirong the accuracy of the secret formula to a productive study session. I will be working with lo-fi beats. Lo-fi, short for “low fidelity”, describes tracks recorded with flaws such as background noise or sounds like raindrops or soft taps. The music in Lo-fi does not feature lyrics, so it does not take your attention away, especially for those who are reading and writing. To increase the level of precision and accuracy I will be doing a cross playlist analysis of Soft Classical music playlist, Workout playlist and Future Funk playlist. The strategy that will be followed for effective results is visual comparison of the focus playlists which are Lo-fi playlist and Soft-Classical playlist within each other and against the archetypes: Workout and Future Funk (you will be able to learn more about the focus and control playlists on the next tab). In the end of the portfolia I will be giving my definition of a "good study playlist" based on computational musicology theories. 
 
 ### Focus playlists 
 
-The 4 playlists we are working with have many similarities and many differences.
+The 2 playlists we are working with have many similarities and many differences:
+
 The *lofi playlist* "Study Lofi📚" by Lofi Girl is a public playlist that has over 7 million likes on Spotify, **500 songs worth of 20 hr 44 mins** of total listening time. One of the unique features of the playlist is that it gets updated, shuffled, renewed and reorganised every day. It is a collection of chill beats - perfect to help you relax and study. 
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-The *soft-classical playlist* made by Umut Aytac is a public playlist made a random spotify user which consists of **131 songs worth of 7 hr 45 mins** of listening time. It is a playlist put together by the wide range of musicians starting with Chopin and ending with brilliant modern musicians like Sherwood Roberts. 
+The *soft-classical playlist*🎻 made by Umut Aytac is a public playlist made a random spotify user which consists of **131 songs worth of 7 hr 45 mins** of listening time. It is a playlist put together by the wide range of musicians starting with Chopin and ending with brilliant modern musicians like Sherwood Roberts. 
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6d7BJsiKHny0PHvgn62pBU?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-The *workout playlist* "Beast Mode" was created by Spotify and has collected almost 10 million likes. It is a collection of **182 songs worth of 9hr 20 mins** of listening. The playlists gets occasionally updated based on the trending new songs and rankings. 
+### Archetype playlists
+
+To be able to hear and see the differences and standing out features of our study playlists we are using two other playlists as archetypes and control playlists:
+
+The *workout playlist*🏆 "Beast Mode" was created by Spotify and has collected almost 10 million likes. It is a collection of **182 songs worth of 9hr 20 mins** of listening. The playlists gets occasionally updated based on the trending new songs and rankings. 
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-The *future funk* playlist was chosen as the archetype to Lo-fi beats. It is another playlist created by Spotify which collected around 300 000 likes and consist of **100 songs with listening time over 5 hr 42 mins**. Future funk is a genre of music that uses elements of funk, disco and Japanese music with nostalgic influences. It's very upbeat, funky and is usually associated with the aesthetic of '90s anime or consumer culture.
+The *future funk*🎇 playlist was chosen as the archetype to Lo-fi beats. It is another playlist created by Spotify which collected around 300 000 likes and consist of **100 songs with listening time over 5 hr 42 mins**. Future funk is a genre of music that uses elements of funk, disco and Japanese music with nostalgic influences. It's very upbeat, funky and is usually associated with the aesthetic of '90s anime or consumer culture.
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXbjGYBfEmjR5?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+### Focus pieces/songs
+
+From the "Study Lofi" playlist, I have chosen the piece "convo by SNUG". It is the most typical lofi beat piece, which is perfectly suitable to test the hypothesises and to learn more about it's unique features that brought the playlist over 7 million likes. The duration of the piece is 2 minutes and 17 seconds. For within playlist comparisons, pieces of similar lenght have been chosen within the playlist. However, for cross-playlist analysis songs have been chosen of varios length and on random, to avoid bias. 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+All of us know the name of Chopin and many of us heard his works at least once in our lives. For my corpus, I have chosen one of my personal favorite pieces "Nocturne in A-Flat major, Op. 32, No. 2" in Vladimir Feltsman's version. 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+
+### Archetype pieces/songs
+
+The South Korean girl band from YG entertainment has been taking over the world with their work for the last few years. The are currently on their world tour which is collecting hundreads of thousands of people in the most famous concert halls from all around the world.  Most of the songs made by the band is very energetic and usually accompanied by a high pace dance moves and music videos which collect trending views on Youtube. These factors make their work "Pink Venom" which has collected 445,411,450 plays on Spotify only. 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+The Future Funk has a niche audience, however, after listening to the entire playlist I have chosen the piece that reflects the features of the genre the most in my opinion. 
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 
 Cross-playlist comparison {data-navmenu=Visualisation}
 =========================================
 
-Column{data-width=700}
+Column{data-width=750}
 -----------------------------------------
 
 ### Cross-playlist comparison
@@ -172,15 +198,25 @@ ggplotly(chart1)
 ```
 
 
-Column{data-width=300}
+Column{data-width=250}
 -----------------------------------------
-In the plot we are contrasting and comparing three playlists. First one is called "Beast Mode" with almost 10,000,000 likes on Spotify and 200 songs. Second goes the "Soft Classical Study" with 1,000 likes and 138 songs. Third goes the "Study Lofi" playlist with 7,000,000 likes and 500 songs. After several experiments and combinations of features the most interesting picture came up with accousticness on x-axis and energy on y-axis. Simultaneously we are looking at the size and color of the dots to see the level of loudness and instrumentalness, respectively. The obvious observations we can make are that first and foremost, study playlist tend to consist of songs with lower energy and higher accousticness. The other two conclusions are pretty much all of the songs in study playlists have high instrumentalness. Last conclusion is that loudness level is low in study playlists and combination of all levels can be observed for the "Beast Mode".
+The plot maximises the features available through *Spotify API* to compare the 4 of our target playlists based on the 4 features which are **Acousticness, Energy, Instrumentalness and Loudness**. 
+1. The Acousticness level shows interesting results, as we can see how the Focus Playlists have most of the pieces cornered by the end of x-axis, indicating the high level of Acousticness Soft Classical has smaller deviation, whereas Lofi beats despite having major concentration after 0.8 is significantly spread out through the axis. 
+2. We can clearly observe the higher Energy of the songs in the Archetype playlist with most of the songs plotted above the 0.5 energy level and easily noticeable placement of almost all songs in the focus playlist with energy level below 0.5. 
+3. Instrumentalness is indicated by the color of the circles. And we can see 100% high instrumentalness in soft classical (expected) and in lofi beats, for which we can make an important conclusion with visual evidence. Instrumentalness if also relatively high in songs in the future funk playlist relative to the workout playlist.
+4. Loudness is determined by the size of the circles. It is hard to get a precise conclusion on the difference of the sizes in bubbles for soft and lofi beats, even though they tend to have a difference at second and third decimal place. However, the important take out is that the medium level range of loudness for the focus playlist and strong alteration in loudness for archetype playlists, especially workout. 
+
+✅ Expectations vs. Reality
+
+Personally, I was expecting lower energy, high instrumentalness and medium to low loudness. I didn't have definite expectations for the acousticness level. Based on the results, *90% of the expectation* indeed were meet with strong evidence for low energy and high instrumentalness necessary for a good study playlist. The missing 10% was wider ranging Acousticness for Lo-fi beats and *too* perfect instrumentalness for the lo-fi beats. 
+
+On the following visualiation tabs we will do more in depth pitch, tibmre, tempo analysis of several chosen pieces with significant focus on chroma and tempo features, as well as holistic approach back to playlists through track level summaries and clusterings. 
   
 
-Within playlist comparison (chroma features) {data-navmenu=Visualisation}
+Within and Cross playlist comparison (chroma features) {data-navmenu=Visualisation}
 =========================================
 
-Column{data-width=850 .tabset}
+Column{data-width=750 .tabset}
 -----------------------------------------
 
 ### LOFI📚
@@ -203,7 +239,7 @@ chart2 <- compmus_long_distance(
   ) +
   geom_tile() +
   coord_equal() +
-  labs(x = "Forgotten Past by Dosi, Wishes and Dreams", y = "Lofi2") +
+  labs(x = "Forgotten Past by Dosi, Wishes and Dreams", y = "convo by SNUG") +
   theme_minimal() +
   scale_fill_viridis_c(guide = NULL)
 # ggplotly(chart2)
@@ -290,36 +326,6 @@ chart2 <- compmus_long_distance(
 # ggplotly(chart2)
 chart2
 ```
-
-
-Column{data-width=150}
------------------------------------------
-Lofi:
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5yzk0dn1DmFcTkon5JrtTc?utm_source=generator&theme=0" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-Soft:
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3weNRklVDqb4Rr5MhKBR3D?utm_source=generator" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="250" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-Workout:
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5nujrmhLynf4yMoMtj8AQF?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-Future funk:
-
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2sj2K4VaNNkW17K1yhgrAm?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator" width="250" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-
-Cross-playlist comparison (study playlist vs. workout playlist) {data-navmenu=Visualisation}
-=========================================
-
-Column{data-width=700 .tabset}
------------------------------------------
 
 ### LOFI📚 vs. CLASSICAL🎻
 
@@ -430,15 +436,17 @@ chart3
 ```
 
 
-Column{data-width=300}
+Column{data-width=250}
 -----------------------------------------
-Description 
+On this page we have done pitch crossing matrix analysis using the "eucledian" normalisation on the chroma domain First we see the results of within playlist plotting followed by cross playlist analysis. It is a little complex to make technical conclusion from the graphs, however, based on the visual features we can make following take-away. 
+✅ The patterns made from the Lofi and Classical playlists do have commonalities (within playlist). The color alteration frequency is lower. What I mean by this is that the chequeboard structures in focus playist his lower density with same color pitches having longer duration, whereas alteration in the archetype pieces is higher and drastically different making the chequeboard structure high dense at micro level.  
 
+✅ The patterns look brighter for study playlists and relatively darker for archetype playlists. Unfortunaly, no combination of normalisation  or/and distance gives a diagonal line. 
 
-Cepstrograms {data-navmenu=Visualisation}
+Cepstograms {data-navmenu=Visualisation}
 =========================================
 
-Column{data-width=700 .tabset}
+Column{data-width=750 .tabset}
 -----------------------------------------
 
 ### LOFI📚
@@ -507,13 +515,13 @@ lofi3 <-
 bind_rows(
 lofi1 |>
   compmus_gather_timbre() |>
-  mutate(type = "Lofi 1"),
+  mutate(type = "Forgotten Past by Dosi, Wishes and Dreams"),
 lofi2 |>
   compmus_gather_timbre() |>
-  mutate(type = "Lofi 2"),
+  mutate(type = "Cadenza by Lucid Keys, Mondo Loops"),
 lofi3 |>
   compmus_gather_timbre() |>
-  mutate(type = "Lofi 3")
+  mutate(type = "convo by SNUG")
 ) |>
   mutate() |>
   ggplot(
@@ -796,30 +804,67 @@ futurefunk3 |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude")
 ```
 
-Column{data-width=300}
+### Track Level Summaries 2
+
+```{r}
+lofi <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+soft_classical <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+workout <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "66RrIu8zXbf3NiDX07e28Z?si=1cd6a16fe1c84826"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+futurefunk <- get_playlist_audio_features("thesoundsofspotify","5j5HRbB3Qy0GPGVbCrKP2G?si=bf6a2493733c40c5") |>
+  slice(1:30) |>
+  add_audio_analysis()
+study <-
+  lofi |>
+  mutate(genre = "Lofi") |>
+  bind_rows(workout |> mutate(genre = "Workout"), soft_classical |> mutate(genre = "Soft Classical"), futurefunk |> mutate(genre = "Future Funk"))
+chart4 <- study |>
+  mutate(
+    timbre =
+      map(
+        segments,
+        compmus_summarise,
+        timbre,
+        method = "mean"
+      )
+  ) |>
+  select(genre, timbre) |>
+  compmus_gather_timbre() |>
+  ggplot(aes(x = basis, y = value, fill = genre)) +
+  geom_violin() +
+  scale_fill_viridis_d() +
+  labs(x = "Spotify Timbre Coefficients", y = "", fill = "Genre")
+
+ggplotly(chart4)
+```
+
+Column{data-width=250}
 -----------------------------------------
-Lofi:
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6y3y1s6eiTYsLEajJGbCkj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5yzk0dn1DmFcTkon5JrtTc?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-Soft Classical: 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/55U56qbqS1g1PaeyIznUjr?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3weNRklVDqb4Rr5MhKBR3D?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-Workout:
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/27NovPIUIRrOZoCHxABJwK?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5nujrmhLynf4yMoMtj8AQF?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-Future Funk:
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5raJYLpnYe0fA9aaN5oBv8?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2sj2K4VaNNkW17K1yhgrAm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2sj2K4VaNNkW17K1yhgrAm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+These graphs in combination with the following self-similarity matrices are the culmination of my corpus. These graphs are made using "rms" method with Euclidean normalisation for the timbre vectors. You can listen to the focus and archetype pieces [here](https://open.spotify.com/playlist/0ajvNqia85XMxxAz1Gb6A7?si=Nh7pYOQiTLCC7zOKBwQ86Q). Three different pieces within one playlist were chosen for comparison and purposes to catch the trend. As we see for the Lofi pieces, they mainly have **medium** timbre magnitude, with noticebly bright c02. Similar pattern is observed for the classical pieces however their average magnitude is mainly **low** and the sudden stripe -> indicating concentration of high timbre on c02. For the workout pieces it is similarly spreaded out as the lofi pieces, however, the concentration on c02 is not as high compared to the other genres/playlists. Future funk has similar picture as the lofi beats, however, one of the major differences is the bold blue color for c07-c12 which wasn't observed for the lofi and classical. 
 
+These ideas are further discussed in the track level summaries graph. The track level was made to compare the individual conclusions we made based on 1-3 pieces now to the average trend of 30 pieces within each playlist. If we have a look at the Spotify timbre coefficient c02, all the playlists had a standing out stripe for the coefficient, yet on the summary their lengths are same yet the level they are at are variying drastically, with our focus playlists having a lower value than the archetypes. 
 
-Self Similarity Matrix {data-navmenu=Visualisation}
+Self Similarity Matrix (ssm) {data-navmenu=Visualisation}
 =========================================
 
-Column{data-width=700 .tabset}
+Column{data-width=750 .tabset}
 -----------------------------------------
 
 ### LOFI📚
@@ -957,19 +1002,24 @@ bind_rows(
 ```
 
 
-Column{data-width=300}
+Column{data-width=250}
 -----------------------------------------
-Songs:
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+Play the songs [here](https://open.spotify.com/playlist/0ajvNqia85XMxxAz1Gb6A7?si=Nh7pYOQiTLCC7zOKBwQ86Q) for better understanding of the graphs.
 
+For the lofi graphs of "convo by SNUG" we see **chequeboard structure** at a micro scale (more specifically for the chroma) with a **very clear diagonal line**. While listening to the piece we can observe the alterations that comes back every 25 seconds, yet the repetitive pattern of the beats with small changes in pitch and timbre can be heard and seen too. On the timbre graph the last 5 seconds looks abnormal and when we hear the piece we can hear that it fades out suddenly (within 5s) rather than gradually, therefore the colors became lighter. The chroma graph is showing an interisting color game from 25s-50s and the same pattern but a little lighter 75s-100s. We can hear this on the graph, these are the ranges when the louder and stronger beats comes in, yet the one before is still playing in the background, as well as the bird whistle gets a little louder compared to the first quarter.
+
+The results that we got from the Classical piece "Nocturne in A-Flat Major Op.32 No.2 by Chopin" are really triggering. The first thing that grasps attention is the bright cross on the chroma graph that appears in the range 150s-190s, at the same time we hear starting from 2:06 in the piece how it switched to high pitch notes, got noticeably louder and faster. Another bright cross appears in the timbre graph at 105s-110s, this we can hear in the piece when it is adding the fast paced charming melody, which was significantly louder for 5s. Going back to the chroma graph, we not only see a clear diagonal down the middle, but 2-4 shorter diagonals at each of the 4 wings, indicating the repetitive alterations. Another interesting feature for the timbre graph is the frame around the piece showing the interesting intro and outro of the piece, indeed we can hear them with strong/loud, yet slow intro and comparibly similar timbre and accord outro. 
+
+When we see the Pink Venom's ssm we indeed see the most typical and common patterns with the chequeboard structure and a bold diagonal line, however, I didn't process the information at first time I saw the outcome, but this is the first time I saw the timbre graph being brighter than the chroma graph. It is something that I observed even more frequently while experimenting with building ssm for songs in the workout playlist. 50s-75s we see a micro level chequeboards in the chroma graph, in the song from 53-1:15 is the chorus of the music. 145-160s in the same plot we see significantly brigter range, this is where the girls build the tension and drums got louder. Besides being the brightest timbre plot, the right groph also has the chequeboard at 2:1 ratio of the bluer squares to yelow squares. We also see the built tension but for comparibly shorter period 155-160s. 
+
+The ssm for "I chose wrong" is one of the non-traditional ssm I have experimented, however, this pattern was also significantly popular for the songs in the Future Funk playlist. The features of this ssm are the dominancy of blue at a ratio of 59:40:1 to green and yellow respectively. The only glimpse of yellow we observe at the intro for the timbre plot and outro of the chroma graph. Overall, we can still see the chequeboard structure and bold diagonal, two crosses 30s-40s and 70-80s, thick frame for the timbre. When we play the piece and write down to radical changes in loudness and speed we can match them up with the features of the plot pretty easily. 
+
+✅ The conclusions we can clearly draw from analysing the Self-similarity matrices the songs from our focus playlists had a pretty similar patterns within  the chroma and timbre features, but also similarities when it comes to the relation between the chroma and timbre graphs. The same goes with the Archetype playlists which had a pretty similar patterns within the chroma and timbre features, but also similarities when it comes to the relation between the chroma and timbre graphs. Now we will look into individual keys time make up the piece at each second. 
 
 Chordograms {data-navmenu=Visualisation}
 =========================================
 
-Column{data-width=700 .tabset}
+Column{data-width=750 .tabset}
 -----------------------------------------
 
 ### LOFI📚
@@ -1133,114 +1183,15 @@ futurefunk1 |>
 
 ```
 
-Column{data-width=300}
+Column{data-width=250}
 -----------------------------------------
-Songs:
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+Play the songs [here](https://open.spotify.com/playlist/0ajvNqia85XMxxAz1Gb6A7?si=Nh7pYOQiTLCC7zOKBwQ86Q) for better understanding of the graphs.
 
-Track Level Summaries {data-navmenu=Visualisation}
-=========================================
-
-Column{data-width=700 .tabset}
------------------------------------------
-
-### Track Level Summaries 1
-
-```{r}
-lofi <-
-  get_playlist_audio_features(
-    "thesoundsofspotify",
-    "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
-soft_classical <-
-  get_playlist_audio_features(
-    "thesoundsofspotify",
-    "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
-workout <-
-  get_playlist_audio_features(
-    "thesoundsofspotify",
-    "66RrIu8zXbf3NiDX07e28Z?si=1cd6a16fe1c84826"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
-futurefunk <- get_playlist_audio_features("thesoundsofspotify","5j5HRbB3Qy0GPGVbCrKP2G?si=bf6a2493733c40c5") |>
-  slice(1:30) |>
-  add_audio_analysis()
-study <-
-  lofi |>
-  mutate(genre = "Lofi") |>
-  bind_rows(workout |> mutate(genre = "Workout"), soft_classical |> mutate(genre = "Soft Classical"), futurefunk |> mutate(genre = "Future Funk"))
-study |>
-  mutate(
-    sections =
-      map(
-        sections,                                    # sections or segments
-        summarise_at,
-        vars(tempo, loudness, duration),             # features of interest
-        list(section_mean = mean, section_sd = sd)   # aggregation functions
-      )
-  ) |>
-  unnest(sections) |>
-  ggplot(
-    aes(
-      x = tempo,
-      y = tempo_section_sd,
-      colour = genre,
-      alpha = loudness
-    )
-  ) +
-  geom_point(aes(size = duration / 60)) +
-  geom_rug() +
-  theme_minimal() +
-  ylim(0, 5) +
-  labs(
-    x = "Mean Tempo (bpm)",
-    y = "SD Tempo",
-    colour = "Genre",
-    size = "Duration (min)",
-    alpha = "Volume (dBFS)"
-  )
-
-```
-
-### Track Level Summaries 2
-
-```{r}
-chart4 <- study |>
-  mutate(
-    timbre =
-      map(
-        segments,
-        compmus_summarise,
-        timbre,
-        method = "mean"
-      )
-  ) |>
-  select(genre, timbre) |>
-  compmus_gather_timbre() |>
-  ggplot(aes(x = basis, y = value, fill = genre)) +
-  geom_violin() +
-  scale_fill_viridis_d() +
-  labs(x = "Spotify Timbre Coefficients", y = "", fill = "Genre")
-
-ggplotly(chart4)
-```
-
-Column{data-width=300}
------------------------------------------
-Description
+For the lofi beats the standing out characterestic is the consistency of having or not having all the keys at similar magnitude each second, as observed by the vertical lines of consistent color. This characteristic varies for the all other genres. As well as "convo" has stripes coming in and go which we can hear too, through the repepetive patterns of the beats coming in and go. For Nocturne, as we saw on the ssm too, it has a outsdanding intro and outro which were also contributed by the high magnitude in the chordogram. We also get ensured of Pink Venom's peak part at 145s which would been possible without the input of the high chords too. Differentiating characterestic of the future funk piece is its concentration in the middle part for the keys Fmaj - G# min. The pattern of the outro also gets its support from the chords.
 
 Clustering - Lofi {data-navmenu=Visualisation}
 =========================================
-Column{data-width=700 .tabset}
+Column{data-width=750 .tabset}
 -----------------------------------------
 
 ### Lofi - Single
@@ -1510,14 +1461,14 @@ heatmaply(
 )
 ```
 
-Column{data-width=300}
+Column{data-width=250}
 -----------------------------------------
-Description 
+Single linkage clustering has been made for the 4 playlists. It is presented in the dendogram and heatmaply format. We began by loading the playlist and summarising the pitch and timbre features. As we see the deviation within the playlists are low making our results received earlier more reliable.
 
 Tempograms {data-navmenu=Visualisation}
 =========================================
 
-Column{data-width=700 .tabset}
+Column{data-width=750 .tabset}
 -----------------------------------------
 
 ### LOFI📚
@@ -1573,21 +1524,99 @@ futurefunk1 |>
   theme_classic()
 ```
 
-Column{data-width=300}
+### Track Level Summaries 1
+
+```{r}
+lofi <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+soft_classical <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+workout <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "66RrIu8zXbf3NiDX07e28Z?si=1cd6a16fe1c84826"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+futurefunk <- get_playlist_audio_features("thesoundsofspotify","5j5HRbB3Qy0GPGVbCrKP2G?si=bf6a2493733c40c5") |>
+  slice(1:30) |>
+  add_audio_analysis()
+study <-
+  lofi |>
+  mutate(genre = "Lofi") |>
+  bind_rows(workout |> mutate(genre = "Workout"), soft_classical |> mutate(genre = "Soft Classical"), futurefunk |> mutate(genre = "Future Funk"))
+study |>
+  mutate(
+    sections =
+      map(
+        sections,                                    # sections or segments
+        summarise_at,
+        vars(tempo, loudness, duration),             # features of interest
+        list(section_mean = mean, section_sd = sd)   # aggregation functions
+      )
+  ) |>
+  unnest(sections) |>
+  ggplot(
+    aes(
+      x = tempo,
+      y = tempo_section_sd,
+      colour = genre,
+      alpha = loudness
+    )
+  ) +
+  geom_point(aes(size = duration / 60)) +
+  geom_rug() +
+  theme_minimal() +
+  ylim(0, 5) +
+  labs(
+    x = "Mean Tempo (bpm)",
+    y = "SD Tempo",
+    colour = "Genre",
+    size = "Duration (min)",
+    alpha = "Volume (dBFS)"
+  )
+
+```
+
+
+Column{data-width=250}
 -----------------------------------------
-Songs: 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0UCJtleZmlwpicJkmrys4a?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/40pgdwioxZSCUyCke0zzOp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0skYUMpS0AcbpjcGsAbRGj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lSrgTxyF9XgyLuNByH7Vm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+On this page, you can see the tempograms of the focus songs. A tempogram is a visual representation of a song’s tempo over time. In this case, the x-axis shows the time in seconds and the y-axis shows the BPM intensity. The tempogram reveals that the tempo of lofi and classical music pieces are cut out with barely any continuous lines (for the same tempo for long time). Whereas, the archetype playlists are standing out on that sense with a main tempo light in the big picture and small tempos joining in without breaking the main tempo. 
+
+The second track level was made to compare the individual conclusions we made based on 1-3 pieces now to the average trend of 30 pieces within each playlist. As we see in the graph, lofi and soft classical indeed has lower volume. There is not significant trend for its tempo as it varying with high standard deviation. Same picture is with soft classical which has varying tempo with high SD. In this case, the situation changes for our archetype playlists. Astonishingly they have trend of mean tempo concentration 100-150bpm and relatively low standard deviation. 
+
+This can be one of the key factors to the idea of being neutral about the study songs. As the listener shouldn't like a specific tempo in our case, so it enjoyes the music over the main task of studying. 
 
 Conclusion{.storyboard}
 =========================================
   
 ### Conclusion 
-  
-```{r}
+ 
+**To wrap up**, we have made almost 10 different visualizations approaching the focus and archetype playlists from the pitch, tempo, timbre, key and few other Spotify features. We are getting ensured on the conclusions made by our researchers on psychologists, so we can create the formula for perfect study playlist:
 
-```
+High acousticness, low energy, high instrumentalness and medium-low loudness + 
 
+Timbre coefficient well spread out with major focus for c01-c08 and noticeble strip for c02 +
+
+Triggering intro and outro +
+
+Use of as much as key chords at a time as possiple, but alter their presence +
+
+No noticeable pattern for the tempo, constant variation +
+
+= 
+
+"Good study playlist"☺️
+
+Study playlists can indeed be a key to a productive review session and it is important both for psychological and personal reasons to fit/suit the study playlist to your preferences. It might be helpful to choose the pieces for your study session based on the formula made above. 
 

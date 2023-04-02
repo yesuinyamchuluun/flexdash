@@ -1,0 +1,923 @@
+---
+title: "clustering short"
+output: html_document
+date: "2023-03-30"
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(readr)
+library(lubridate)
+library(ggplot2)
+library(tidyverse)
+library(plotly)
+library(spotifyr)
+library(compmus)
+library(dplyr)
+library(tidymodels)
+library(ggdendro)
+library(heatmaply)
+
+lofi <- get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71")
+s_classic <- get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") 
+non_lofi <- get_playlist_audio_features("", "66RrIu8zXbf3NiDX07e28Z?si=1cd6a16fe1c84826") 
+futurefunk <- get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6")
+soft_lofi <-
+  bind_rows(
+    futurefunk |> mutate(category = "Future Funk"),
+    non_lofi |> mutate(category = "Beast Mode"),
+    s_classic |> mutate(category = "Soft Classical"),
+    lofi |> mutate(category = "Study Lofi")
+  ) 
+chopin <-
+  get_tidy_audio_analysis("40pgdwioxZSCUyCke0zzOp?si=c5c8c0e45dd54c76") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches) #'Nocturne in A-Flat Major, Op. 32, No. 2' by Chopin
+ludovico <-
+  get_tidy_audio_analysis("3weNRklVDqb4Rr5MhKBR3D?si=3723ad9ebb624e86") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches) #Nuvole Bianche by Ludovico Einaudi
+blackpink <-
+  get_tidy_audio_analysis("0skYUMpS0AcbpjcGsAbRGj?si=1845018d70214865") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+dualipa <-
+  get_tidy_audio_analysis("5nujrmhLynf4yMoMtj8AQF?si=7edf27c3177b417f") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+futurefunk1 <-
+  get_tidy_audio_analysis("6lSrgTxyF9XgyLuNByH7Vm?si=e481dedf14de48f0") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+futurefunk2 <-
+  get_tidy_audio_analysis("2sj2K4VaNNkW17K1yhgrAm?si=9a95d533438b4ee5") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+lofi1 <-
+  get_tidy_audio_analysis("5yzk0dn1DmFcTkon5JrtTc?si=61052cc7cd0741dd") |> # Forgotten Past by Dosi, Wishes and Dreams
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+lofi2 <-
+  get_tidy_audio_analysis("6y3y1s6eiTYsLEajJGbCkj?si=2a95b480bd31415c") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches) # Cadenza by Lucid Keys, Mondo Loops
+lofi3 <-
+  get_tidy_audio_analysis("0UCJtleZmlwpicJkmrys4a?si=8172fd17c8834ca2") |># convo by SNUG
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+```
+
+Clustering - Lofi {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+lofi_1 <-
+  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+lofi_study_s_1 <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi_1
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi_1 |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+study_dist_s <- dist(lofi_study_s_1, method = "euclidean")
+
+study_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  lofi_study_s_1,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+lofi <-
+  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+lofi_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+study_dist_a <- dist(lofi_study_a, method = "euclidean")
+
+study_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  lofi_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+lofi <-
+  get_playlist_audio_features("", "1IESTA4eaoYhOAi5d0N5Kz?si=e499e373775e4f71") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+lofi_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = lofi
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+study_dist_c <- dist(lofi_study_c, method = "euclidean")
+
+study_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  lofi_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+Description
+
+
+Clustering - Classical {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+soft_classical <-
+  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+soft_study_s <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = soft_classical
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(soft_classical |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+soft_dist_s <- dist(soft_study_s, method = "euclidean")
+
+soft_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  soft_study_s,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+soft_classical <-
+  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+soft_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = soft_classical
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+soft_dist_a <- dist(soft_study_a, method = "euclidean")
+
+soft_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  soft_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+soft_classical <-
+  get_playlist_audio_features("", "63PWggVCDaRoygnVT6zeot?si=69efc4e73940435b") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+soft_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = soft_classical
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(lofi |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+soft_dist_c <- dist(soft_study_c, method = "euclidean")
+
+soft_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  soft_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+Description
+
+Clustering - Workout {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+workout <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+workout_study_s <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = workout
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(workout |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+workout_dist_s <- dist(workout_study_s, method = "euclidean")
+
+workout_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  workout_study_s,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+workout <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+workout_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = workout
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(workout |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+workout_dist_a <- dist(workout_study_a, method = "euclidean")
+
+workout_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  workout_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+workout <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=dd861654a8ae4ff2") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+workout_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = workout
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(workout |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+workout_dist_c <- dist(workout_study_c, method = "euclidean")
+
+workout_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  workout_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+
+Description
+
+Clustering - Future Funk {data-navmenu=Visualisation}
+=========================================
+
+Column{data-width=700 .tabset}
+-----------------------------------------
+
+### Single
+
+```{r}
+futurefunk <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+future_study_s <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = futurefunk
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(futurefunk |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+future_dist_s <- dist(future_study_s, method = "euclidean")
+
+future_dist_s |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  future_study_s,
+  hclustfun = hclust,
+  hclust_method = "single",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Average
+
+```{r}
+futurefunk <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+future_study_a <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = futurefunk
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(futurefunk1 |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+future_dist_a <- dist(future_study_a, method = "euclidean")
+
+future_dist_a |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  future_study_a,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+### Complete
+
+```{r}
+futurefunk <-
+  get_playlist_audio_features("", "5j5HRbB3Qy0GPGVbCrKP2G?si=91fbd0c8c6254fc6") |>
+  slice(1:50) |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+future_study_c <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = futurefunk
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(futurefunk |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+future_dist_c <- dist(future_study_c, method = "euclidean")
+
+future_dist_c |> 
+  hclust(method = "complete") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+heatmaply(
+  future_study_c,
+  hclustfun = hclust,
+  hclust_method = "complete",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column{data-width=300}
+-----------------------------------------
+Description
